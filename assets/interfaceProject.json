@@ -1,0 +1,66 @@
+{
+    "form": {
+        "id": 1,
+        "title": "Project",
+        "sectionsIds": [
+            1,
+            2
+        ]
+    },
+    "sections": {
+        "1": {
+            "title": "Section 1",
+            "fieldsIds": [
+                "prjid",
+                "prjname",
+                "prjdesc"
+            ],
+            "formId": 1
+        },
+        "2": {
+            "title": "Section 2",
+            "fieldsIds": [
+                "prjtype",
+                "prjcat"
+            ],
+            "formId": 1
+        }
+    },
+    "fields": {
+        "prjid": {
+            "id": "prjid",
+            "sectionId": 1,
+            "value": "01",
+            "type": "text",
+            "required": true
+        },
+        "prjname": {
+            "id": "prjname",
+            "sectionId": 1,
+            "value": "project 01 name",
+            "type": "text",
+            "required": true
+        },
+        "prjdesc": {
+            "id": "prjdesc",
+            "sectionId": 1,
+            "value": "",
+            "type": "text",
+            "required": true
+        },
+        "prjtype": {
+            "id": "prjtype",
+            "sectionId": 2,
+            "value": "Project type",
+            "type": "text",
+            "required": false
+        },
+        "prjcat": {
+            "id": "prjcat",
+            "sectionId": 2,
+            "value": "Project category",
+            "type": "text",
+            "required": false
+        }
+    }
+}

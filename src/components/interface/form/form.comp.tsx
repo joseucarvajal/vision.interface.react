@@ -22,9 +22,8 @@ function Form() {
       {data ? (
         <div>
           <h1>{data.form.title}</h1>
-          {JSON.stringify(Object.keys(data.sections))}
           <div>
-            {Object.keys(data.sections).map((sectionId) => (
+            {data.form.sectionsIds.map((sectionId) => (
               <Section
                 key={sectionId}
                 section={data.sections[sectionId]}
@@ -34,7 +33,8 @@ function Form() {
           </div>
         </div>
       ) : null}
-      Interface page <br />
+
+      <br/>
       <div>
         <button onClick={sendDataToClarity}>Save data</button>
         <button onClick={()=>{

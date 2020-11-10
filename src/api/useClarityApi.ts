@@ -5,7 +5,7 @@ import {
 
 export default function useApiAuth() {
   const clarityApi = axios.create({
-    baseURL: CLARITY_ENDPOINT,    
+    baseURL: CLARITY_ENDPOINT,        
   });
 
   return clarityApi;

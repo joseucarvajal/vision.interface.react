@@ -1,6 +1,4 @@
 import React from "react";
-
-import useGetFormDefinition from "../../../hooks/api/useGetFormDefinition";
 import { ISection, IFieldHash } from "../../../shared/contracts/types";
 import Field from "../field/field.comp";
 
@@ -13,17 +11,26 @@ const Section: React.FC<ISectionProps> = ({ section, fields }) => {
   const { title, fieldsIds } = section;
 
   return (
-    <div>
-      <h2>{title}</h2>
-      <div>
-        {fieldsIds.map((idField) => (
-          <Field 
-            key={idField} 
-            field={fields[idField]}
-          />
-        ))}
+    <>
+      <div className="col-12">
+        <div className="row intesectiontitle ">
+            {title}
+        </div>
+        <div className="row">
+            <div className="col-6">
+              {fieldsIds.map((idField) => (
+                <Field 
+                  key={idField} 
+                  field={fields[idField]}
+                />
+              ))}
+            </div>
+            <div className="col-6">
+                col2
+            </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

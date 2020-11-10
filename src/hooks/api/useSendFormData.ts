@@ -1,4 +1,4 @@
-import { useQuery, useQueryCache } from "react-query";
+import { useQueryCache } from "react-query";
 import {ApiEndPoints} from "../../api/";
 
 

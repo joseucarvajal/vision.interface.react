@@ -1,12 +1,14 @@
 export interface IForm {
     id: number;
-    title: string;
+    code: string;
+    name: string;
     sectionsIds: string[]
 }
 
 export interface ISection {
-    title: string;
     formId: number;
+    title: string;
+    order: number;
     fieldsIds: string[]
 }
 
@@ -14,14 +16,17 @@ export interface ISectionHash {
     [id: string]: ISection
 }
 
-export type FieldType = "text" | "lookup";
+export type FieldType = "String" | "Boolean";
 
 export interface IField {
     id: string;
+    name: string;
     sectionId: string;
     value: string;
     type: FieldType;
-    required: boolean
+    required: boolean;
+    column: number;
+    order: number;
 }
 
 export interface IFieldHash {

@@ -1,0 +1,65 @@
+{
+    "form": {
+        "id": 5005020,
+        "code": "PPMI_OUT_PROJECTS",
+        "name": "Projects",
+        "sectionsIds": [
+            "PPMS00019"
+        ]
+    },
+    "sections": {
+        "PPMS00019": {
+            "formId": 5005020,
+            "title": "General",
+            "order": 1,
+            "fieldsIds": [
+                "investment_name",
+                "investment_code",
+                "key_id",
+                "co_substantial_perf"
+            ]
+        }
+    },
+    "fields": {
+        "investment_name": {
+            "id": "investment_name",
+            "name": "Project Name",
+            "sectionId": "PPMS00019",
+            "value": "React Project",
+            "type": "String",
+            "required": true,
+            "column": 1,
+            "order": 1
+        },
+        "investment_code": {
+            "id": "investment_code",
+            "name": "Project ID",
+            "sectionId": "PPMS00019",
+            "value": "project001",
+            "type": "String",
+            "required": true,
+            "column": 1,
+            "order": 2
+        },
+        "key_id": {
+            "id": "key_id",
+            "name": "key_id",
+            "sectionId": "PPMS00019",
+            "value": "5000000",
+            "type": "String",
+            "required": true,
+            "column": 2,
+            "order": 1
+        },
+        "co_substantial_perf": {
+            "id": "co_substantial_perf",
+            "name": "co_substantial_perf",
+            "sectionId": "PPMS00019",
+            "value": "true",
+            "type": "Boolean",
+            "required": false,
+            "column": 2,
+            "order": 2
+        }
+    }
+}

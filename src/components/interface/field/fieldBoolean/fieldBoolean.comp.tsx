@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { IField, IInterfaceForm } from "../../../shared/contracts/types";
+import { IField, IInterfaceForm } from "../../../../shared/contracts/types";
 import { useQueryCache } from "react-query";
-import { ApiEndPoints } from "../../../api";
-import { Checkbox } from "@fluentui/react";
+import { ApiEndPoints } from "../../../../api";
+import { Checkbox, Label } from "@fluentui/react";
 import { initializeIcons } from '@fluentui/react/lib/Icons';
 
 initializeIcons(undefined, { disableWarnings: true });
@@ -41,17 +41,18 @@ const FieldBoolean: React.FC<IFieldBooleanProps> = ({ field }) => {
     );
   }
 
-  if(fieldValue === "true")
-  {
-  }
+  const isChecked = fieldValue === "true" ? true : false;
 
   return (
-    <>
-      {fieldValue === "true" 
-        ? <Checkbox label={field.name} defaultChecked onChange={onChange}/>
-        : <Checkbox label={field.name} onChange={onChange}/>
-      }
-    </>
+    <div className="row mt-1">
+      <div className="col-6 vision-right">
+        <Label>{field.name}</Label>
+      </div>
+      <div className="col-6">
+        {/* <input type="checkbox" checked={isChecked}/> */}
+         <Checkbox checked={isChecked} onChange={onChange}/>
+      </div>
+    </div>
   );
 };
 

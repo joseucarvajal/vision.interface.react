@@ -12,16 +12,8 @@ code {
     monospace;
 }
 
-.intesectiontitle { 
-  background: #ededed;
-}
-
-
-.itroi-message {
+span 
+{
     font-size:14px !important;
 }
 
-.itroi-input 
-{
-    font-size: 14px !important;
-}

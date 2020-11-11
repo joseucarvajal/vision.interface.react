@@ -1,6 +1,6 @@
 import React from "react";
-import { IField } from "../../../shared/contracts/types";
-import Field from "../field/field.comp";
+import { IField } from "../../../../shared/contracts/types";
+import Field from "../../field/field.comp";
 
 interface ISectionColumnProps {
   fieldsColumn: IField[];

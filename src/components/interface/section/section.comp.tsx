@@ -1,7 +1,8 @@
 import React from "react";
 import { ISection, IFieldHash } from "../../../shared/contracts/types";
-import Field from "../field/field.comp";
-import SectionColumn from "./sectionColumn.comp";
+import SectionColumn from "./sectionColumn/sectionColumn.comp";
+import "./section.css";
+import { Text } from "@fluentui/react";
 
 interface ISectionProps {
   section: ISection;
@@ -36,33 +37,25 @@ const Section: React.FC<ISectionProps> = ({ section, fields }) => {
   }
 
   return (
-    <div className="col-12">
-      <div className="row intesectiontitle ">
-          {title}
-      </div>
-      <div className="row">
-
-        {fieldsByNumColumn.map((fieldArray, index) => (
-            <SectionColumn 
-              key={index}
-              fieldsColumn={fieldArray}
-              columnClass={columnClassName[numColumns-1]}
-            />
-          ))}
-
-
-        {/* <div className={columnClassName[numColumns-1]}>
-          {fieldsByNumColumn.map((fieldArray) => (
-            fieldArray.map((field) => (
-              <Field 
-                key={field.id} 
-                field={field}
+    <>
+      <div className="col-12">
+        <div className="row vision-sectiontitle">
+          <Text>{title}</Text>
+        </div>
+        <div className="row">
+          {fieldsByNumColumn.map((fieldArray, index) => (
+              <SectionColumn 
+                key={index}
+                fieldsColumn={fieldArray}
+                columnClass={columnClassName[numColumns-1]}
               />
-            ))
-          ))}
-        </div> */}
+            ))}
+        </div>
       </div>
-    </div>
+      <div className="col-12">
+        &nbsp;
+      </div>
+    </>
   );
 };
 

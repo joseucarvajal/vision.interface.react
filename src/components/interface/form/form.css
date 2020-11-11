@@ -1,0 +1,33 @@
+.vision-required 
+{
+    font-size: 17px;
+    font-weight: bold;
+    color: #762525;
+}
+
+.vision-unique
+{
+    font-size: 17px;
+    font-weight: bold;
+    color: #6B8F5F;
+}
+
+.vision-enterOnce 
+{
+    width: 10px;
+    height: 10px;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: 10%;
+}
+
+.vision-refresh{
+	cursor: pointer;
+	width: 20px;
+    height: 20px;
+}
+
+.vision-right{
+    text-align: right;
+}
+

@@ -4,6 +4,10 @@ import useSendFormData from "../../../hooks/api/useSendFormData";
 import Section from "../section/section.comp";
 import { useQueryCache } from "react-query";
 import { ApiEndPoints } from "../../../api";
+import refresh from "../../../images/refresh.png"
+import enterOnce from "../../../images/ICONGO.gif"
+import { Text } from "@fluentui/react";
+import "./form.css";
 
 function Form() {
   const interfaceNameFromQueryString = "project";
@@ -22,23 +26,38 @@ function Form() {
       {data ? (
         <>
           <div className="row">
-              <div className="col-12">
               <h1>{data.form.name}</h1>
-              </div>
           </div>
           
           <div className="row">
-              <div className="col-6">
-                  Ayudas
-              </div>
-              <div className="col-6">
-                  <div className="row">
-                      actualizar
-                  </div>
-                  <div className="row">
-                      acciones
-                  </div>
-              </div>
+                <table width="100%">
+                  <thead>
+                  </thead>
+                  <tbody>
+                    <tr>
+                        <td align="left" width="10%">
+                            <Text className="vision-required">*</Text>
+                            <Text>= Required</Text>
+                        </td>
+                        <td align="left" width="10%">
+                            <Text className="vision-unique">*</Text>
+                            <Text>= Unique</Text>
+                        </td>
+                        <td align="left" width="10%">
+                            <img src={enterOnce} className="vision-enterOnce" alt="Enter Once" />
+                            <Text>= Enter Once</Text>
+                        </td>
+                        <td align="right" width="70%">
+                                <img src={refresh} className="vision-refresh" alt="Refresh" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colSpan={4} align="right">
+                          <Text>Actions</Text>
+                        </td>
+                    </tr>
+                  </tbody>
+                </table>
           </div>
           
           <div className="row">

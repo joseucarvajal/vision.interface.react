@@ -1,7 +1,7 @@
 import React from "react";
 import { IField } from "../../../shared/contracts/types";
-import FieldString from "./fieldString.comp"
-import FieldBoolean from "./fieldBoolean.comp"
+import FieldString from "./fieldString/fieldString.comp"
+import FieldBoolean from "./fieldBoolean/fieldBoolean.comp"
 
 interface IFieldProps {
   field: IField;

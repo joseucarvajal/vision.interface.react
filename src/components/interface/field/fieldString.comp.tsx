@@ -2,10 +2,6 @@ import React, { useState, useEffect } from "react";
 import { IField, IInterfaceForm } from "../../../shared/contracts/types";
 import { useQueryCache } from "react-query";
 import { ApiEndPoints } from "../../../api";
-import { TextField } from 'office-ui-fabric-react/lib/TextField';
-import { Label } from 'office-ui-fabric-react/lib/Label';
-import { Stack } from 'office-ui-fabric-react/lib/Stack';
-
 
 interface IFieldStringProps {
   field: IField;
@@ -41,13 +37,15 @@ const FieldString: React.FC<IFieldStringProps> = ({ field }) => {
     );
   }
 
-  const stackTokens = { childrenGap: 5 };
-
   return (
-    <Stack horizontal tokens={stackTokens}>
-        <Label>{field.name}</Label>
-        <TextField  value={fieldValue} onChange={onChange} />
-    </Stack>
+    <div className="row">
+          <div className="col-6">
+            <span className="itroi-message">{field.name}</span>
+          </div>
+          <div className="col-6">
+            <input name={field.id} type="text" className="itroi-input" value={fieldValue} onChange={onChange}/>
+          </div>
+    </div>
   );
 };
 

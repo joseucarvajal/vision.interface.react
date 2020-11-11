@@ -6,7 +6,6 @@ import { useQueryCache } from "react-query";
 import { ApiEndPoints } from "../../../api";
 import refresh from "../../../images/refresh.png"
 import enterOnce from "../../../images/ICONGO.gif"
-import { Text } from "@fluentui/react";
 import "./form.css";
 
 function Form() {
@@ -36,16 +35,16 @@ function Form() {
                   <tbody>
                     <tr>
                         <td align="left" width="10%">
-                            <Text className="vision-required">*</Text>
-                            <Text>= Required</Text>
+                            <span className="vision-required">*</span>
+                            <span>= Required</span>
                         </td>
                         <td align="left" width="10%">
-                            <Text className="vision-unique">*</Text>
-                            <Text>= Unique</Text>
+                            <span className="vision-unique">*</span>
+                            <span>= Unique</span>
                         </td>
                         <td align="left" width="10%">
                             <img src={enterOnce} className="vision-enterOnce" alt="Enter Once" />
-                            <Text>= Enter Once</Text>
+                            <span>= Enter Once</span>
                         </td>
                         <td align="right" width="70%">
                                 <img src={refresh} className="vision-refresh" alt="Refresh" />
@@ -53,7 +52,7 @@ function Form() {
                     </tr>
                     <tr>
                         <td colSpan={4} align="right">
-                          <Text>Actions</Text>
+                          <span>Actions</span>
                         </td>
                     </tr>
                   </tbody>

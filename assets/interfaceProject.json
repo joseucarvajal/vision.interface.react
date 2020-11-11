@@ -1,66 +1,103 @@
 {
     "form": {
-        "id": 1,
-        "title": "Project",
+        "id": 5005020,
+        "code": "PPMI_OUT_PROJECTS",
+        "name": "Projects",
         "sectionsIds": [
-            1,
-            2
+            "PPMS00019",
+            "PPMS00115",
+            "PPMS00117"
         ]
     },
     "sections": {
-        "1": {
-            "title": "Section 1",
+        "PPMS00117": {
+            "formId": 5005020,
+            "title": "Non-Contract Specific Contacts",
+            "order": 3,
             "fieldsIds": [
-                "prjid",
-                "prjname",
-                "prjdesc"
-            ],
-            "formId": 1
+            ]
         },
-        "2": {
-            "title": "Section 2",
+        "PPMS00115": {
+            "formId": 5005020,
+            "title": "Contract Administration",
+            "order": 2,
             "fieldsIds": [
-                "prjtype",
-                "prjcat"
-            ],
-            "formId": 1
+                "co_cav_cert_subpe_da",
+                "co_ca_city_circul_nu"
+            ]
+        },
+        "PPMS00019": {
+            "formId": 5005020,
+            "title": "General",
+            "order": 1,
+            "fieldsIds": [
+                "investment_name",
+                "investment_code",
+                "key_id",
+                "co_substantial_perf"
+            ]
         }
     },
     "fields": {
-        "prjid": {
-            "id": "prjid",
-            "sectionId": 1,
-            "value": "01",
-            "type": "text",
-            "required": true
+        "co_cav_cert_subpe_da": {
+            "id": "co_cav_cert_subpe_da",
+            "name": "Substantial Performance Date",
+            "sectionId": "PPMS00115",
+            "value": "09/25/2019",
+            "type": "String",
+            "required": false,
+            "column": 2,
+            "order": 2
         },
-        "prjname": {
-            "id": "prjname",
-            "sectionId": 1,
-            "value": "project 01 name",
-            "type": "text",
-            "required": true
+        "co_ca_city_circul_nu": {
+            "id": "co_ca_city_circul_nu",
+            "name": "Circulation Number(s)",
+            "sectionId": "PPMS00115",
+            "value": "cirulation value 123",
+            "type": "String",
+            "required": false,
+            "column": 2,
+            "order": 1
         },
-        "prjdesc": {
-            "id": "prjdesc",
-            "sectionId": 1,
-            "value": "",
-            "type": "text",
-            "required": true
+        "co_substantial_perf": {
+            "id": "co_substantial_perf",
+            "name": "co_substantial_perf",
+            "sectionId": "PPMS00019",
+            "value": "true",
+            "type": "Boolean",
+            "required": false,
+            "column": 2,
+            "order": 2
         },
-        "prjtype": {
-            "id": "prjtype",
-            "sectionId": 2,
-            "value": "Project type",
-            "type": "text",
-            "required": false
+        "key_id": {
+            "id": "key_id",
+            "name": "key_id",
+            "sectionId": "PPMS00019",
+            "value": "5000000",
+            "type": "String",
+            "required": true,
+            "column": 2,
+            "order": 1
         },
-        "prjcat": {
-            "id": "prjcat",
-            "sectionId": 2,
-            "value": "Project category",
-            "type": "text",
-            "required": false
+        "investment_code": {
+            "id": "investment_code",
+            "name": "Project ID",
+            "sectionId": "PPMS00019",
+            "value": "project001",
+            "type": "String",
+            "required": true,
+            "column": 1,
+            "order": 2
+        },
+        "investment_name": {
+            "id": "investment_name",
+            "name": "Project Name",
+            "sectionId": "PPMS00019",
+            "value": "React Project",
+            "type": "String",
+            "required": true,
+            "column": 1,
+            "order": 1
         }
     }
 }

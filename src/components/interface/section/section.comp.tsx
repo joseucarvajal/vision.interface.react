@@ -2,7 +2,6 @@ import React from "react";
 import { ISection, IFieldHash } from "../../../shared/contracts/types";
 import SectionColumn from "./sectionColumn/sectionColumn.comp";
 import "./section.css";
-import { Text } from "@fluentui/react";
 
 interface ISectionProps {
   section: ISection;
@@ -23,7 +22,7 @@ const Section: React.FC<ISectionProps> = ({ section, fields }) => {
     fieldsByNumColumn.push(
       fieldsIds.map((idField) => (
         fields[idField]
-      )).filter(field => field.column === nColumn).sort((a, b) => {
+      )).filter(field => field.column === nColumn && !field.hidden).sort((a, b) => {
         if (a.order > b.order) {
           return 1;
         }
@@ -40,7 +39,7 @@ const Section: React.FC<ISectionProps> = ({ section, fields }) => {
     <>
       <div className="col-12">
         <div className="row vision-sectiontitle">
-          <Text>{title}</Text>
+          <span>{title}</span>
         </div>
         <div className="row">
           {fieldsByNumColumn.map((fieldArray, index) => (

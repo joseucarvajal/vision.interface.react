@@ -3,11 +3,11 @@ import { IField, IInterfaceForm } from "../../../../shared/contracts/types";
 import { useQueryCache } from "react-query";
 import { ApiEndPoints } from "../../../../api";
 
-interface IFieldStringProps {
+interface IFieldLargeStringProps {
   field: IField;
 }
 
-const FieldString: React.FC<IFieldStringProps> = ({ field }) => {
+const FieldLargeString: React.FC<IFieldLargeStringProps> = ({ field }) => {
   const { value } = field;
   const queryCache = useQueryCache();
 
@@ -38,15 +38,16 @@ const FieldString: React.FC<IFieldStringProps> = ({ field }) => {
   }
   
   return (
-    <input type="text"
+    <textarea
       value={fieldValue} 
-      onChange={onChange} 
-      size = {field.width}
+      onChange={onChange}               
+      cols = {field.width}
       maxLength={field.maxLength} 
       disabled={field.readOnly}
-      title={field.tooltip}              
+      title={field.tooltip}
+      rows={field.height}              
     />
-);
+  );
 };
 
-export default FieldString;
+export default FieldLargeString;

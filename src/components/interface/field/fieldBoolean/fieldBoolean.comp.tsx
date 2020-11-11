@@ -2,10 +2,6 @@ import React, { useState, useEffect } from "react";
 import { IField, IInterfaceForm } from "../../../../shared/contracts/types";
 import { useQueryCache } from "react-query";
 import { ApiEndPoints } from "../../../../api";
-import { Checkbox, Label } from "@fluentui/react";
-import { initializeIcons } from '@fluentui/react/lib/Icons';
-
-initializeIcons(undefined, { disableWarnings: true });
 
 interface IFieldBooleanProps {
   field: IField;
@@ -44,15 +40,12 @@ const FieldBoolean: React.FC<IFieldBooleanProps> = ({ field }) => {
   const isChecked = fieldValue === "true" ? true : false;
 
   return (
-    <div className="row mt-1">
-      <div className="col-6 vision-right">
-        <Label>{field.name}</Label>
-      </div>
-      <div className="col-6">
-        {/* <input type="checkbox" checked={isChecked}/> */}
-         <Checkbox checked={isChecked} onChange={onChange}/>
-      </div>
-    </div>
+    <input type="checkbox" 
+      checked={isChecked} 
+      onChange={onChange} 
+      title={field.tooltip}
+      disabled={field.readOnly}
+    />
   );
 };
 

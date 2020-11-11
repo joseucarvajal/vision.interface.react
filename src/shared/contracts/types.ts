@@ -16,17 +16,26 @@ export interface ISectionHash {
     [id: string]: ISection
 }
 
-export type FieldType = "String" | "Boolean";
+export type FieldType = "String" | "Boolean" | "Date";
 
 export interface IField {
-    id: string;
-    name: string;
-    sectionId: string;
-    value: string;
-    type: FieldType;
-    required: boolean;
     column: number;
+    id: string;
+    isCustom: boolean;
+    isUnique: boolean;
+    height: number;
+    hidden: boolean;
+    hint: string;
+    maxLength: number;
+    name: string;
     order: number;
+    required: boolean;
+    readOnly: boolean;
+    sectionId: string;
+    tooltip: string;
+    type: FieldType;
+    value: string;
+    width: number;
 }
 
 export interface IFieldHash {

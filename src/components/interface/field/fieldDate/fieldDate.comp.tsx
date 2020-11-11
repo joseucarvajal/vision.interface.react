@@ -3,15 +3,34 @@ import { IField, IInterfaceForm } from "../../../../shared/contracts/types";
 import { useQueryCache } from "react-query";
 import { ApiEndPoints } from "../../../../api";
 
-interface IFieldStringProps {
+interface IFieldDateProps {
   field: IField;
 }
 
-const FieldString: React.FC<IFieldStringProps> = ({ field }) => {
+const FieldDate: React.FC<IFieldDateProps> = ({ field }) => {
   const { value } = field;
   const queryCache = useQueryCache();
 
   const [fieldValue, setFieldValue] = useState(value); 
+
+  const getDateValue = () => {
+    let newValue = fieldValue;
+    if (fieldValue.indexOf('T') != -1) {
+      newValue = fieldValue.split('T')[0] + 'T00:00:00Z';
+    }
+    else {
+      newValue += 'T00:00:00Z';
+    }
+
+    let newDate = new Date(newValue);
+
+    //To support mutiple timezones
+    newDate.setTime(newDate.getTime() + newDate.getTimezoneOffset() * 60 * 1000);
+
+    return newDate;
+  };
+
+  const dateValue = getDateValue();
 
   useEffect(() => {
     setFieldValue(field.value);
@@ -36,7 +55,7 @@ const FieldString: React.FC<IFieldStringProps> = ({ field }) => {
       }
     );
   }
-  
+
   return (
     <input type="text"
       value={fieldValue} 
@@ -46,7 +65,7 @@ const FieldString: React.FC<IFieldStringProps> = ({ field }) => {
       disabled={field.readOnly}
       title={field.tooltip}              
     />
-);
+  );
 };
 
-export default FieldString;
+export default FieldDate;

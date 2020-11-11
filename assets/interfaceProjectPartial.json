@@ -4,28 +4,10 @@
         "code": "PPMI_OUT_PROJECTS",
         "name": "Projects",
         "sectionsIds": [
-            "PPMS00019",
-            "PPMS00115",
-            "PPMS00117"
+            "PPMS00019"
         ]
     },
     "sections": {
-        "PPMS00117": {
-            "formId": 5005020,
-            "title": "Non-Contract Specific Contacts",
-            "order": 3,
-            "fieldsIds": [
-            ]
-        },
-        "PPMS00115": {
-            "formId": 5005020,
-            "title": "Contract Administration",
-            "order": 2,
-            "fieldsIds": [
-                "co_cav_cert_subpe_da",
-                "co_ca_city_circul_nu"
-            ]
-        },
         "PPMS00019": {
             "formId": 5005020,
             "title": "General",
@@ -34,33 +16,26 @@
                 "investment_name",
                 "investment_code",
                 "key_id",
-                "co_substantial_perf"
+                "co_substantial_perf",
+                "co_cav_cert_subpe_da"
             ]
         }
     },
     "fields": {
         "co_cav_cert_subpe_da": {
             "id": "co_cav_cert_subpe_da",
+            "isCustom": true,
             "name": "Substantial Performance Date",
-            "sectionId": "PPMS00115",
-            "value": "09/25/2019",
-            "type": "String",
+            "sectionId": "PPMS00019",
+            "value": "2017-05-15T00:00:00",
+            "type": "Date",
             "required": false,
-            "column": 2,
-            "order": 2
-        },
-        "co_ca_city_circul_nu": {
-            "id": "co_ca_city_circul_nu",
-            "name": "Circulation Number(s)",
-            "sectionId": "PPMS00115",
-            "value": "cirulation value 123",
-            "type": "String",
-            "required": false,
-            "column": 2,
-            "order": 1
+            "column": 1,
+            "order": 3
         },
         "co_substantial_perf": {
             "id": "co_substantial_perf",
+            "isCustom": true,
             "name": "co_substantial_perf",
             "sectionId": "PPMS00019",
             "value": "true",
@@ -71,6 +46,7 @@
         },
         "key_id": {
             "id": "key_id",
+            "hidden": true,
             "name": "key_id",
             "sectionId": "PPMS00019",
             "value": "5000000",
@@ -81,23 +57,30 @@
         },
         "investment_code": {
             "id": "investment_code",
+            "isUnique": true,
             "name": "Project ID",
             "sectionId": "PPMS00019",
             "value": "project001",
             "type": "String",
             "required": true,
             "column": 1,
-            "order": 2
+            "order": 2,
+            "maxLength": 20
         },
         "investment_name": {
-            "id": "investment_name",
-            "name": "Project Name",
-            "sectionId": "PPMS00019",
-            "value": "React Project",
-            "type": "String",
-            "required": true,
             "column": 1,
-            "order": 1
+            "id": "investment_name",
+            "hint": "Clarity project name",
+            "maxLength": 80,
+            "name": "Project Name",
+            "order": 1,
+            "required": true,
+            "readOnly": true,
+            "sectionId": "PPMS00019",
+            "tooltip": "Project name is sensitive",
+            "type": "String",
+            "value": "React Project",
+            "width": 50
         }
     }
 }

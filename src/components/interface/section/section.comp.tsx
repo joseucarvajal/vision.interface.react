@@ -1,6 +1,7 @@
 import React from "react";
 import { ISection, IFieldHash } from "../../../shared/contracts/types";
 import Field from "../field/field.comp";
+import SectionColumn from "./sectionColumn.comp";
 
 interface ISectionProps {
   section: ISection;
@@ -34,33 +35,32 @@ const Section: React.FC<ISectionProps> = ({ section, fields }) => {
     );
   }
 
-  console.log(fieldsByNumColumn);
-
   return (
     <div className="col-12">
       <div className="row intesectiontitle ">
           {title}
       </div>
       <div className="row">
-          <div className={columnClassName[numColumns-1]}>
-            {fieldsByNumColumn.map((fieldArray) => (
-              fieldArray.map((field) => (
-                <Field 
-                  key={field.id} 
-                  field={field}
-                />
-              ))
-            ))}
-            {/* {fieldsIds.map((idField) => (
+
+        {fieldsByNumColumn.map((fieldArray, index) => (
+            <SectionColumn 
+              key={index}
+              fieldsColumn={fieldArray}
+              columnClass={columnClassName[numColumns-1]}
+            />
+          ))}
+
+
+        {/* <div className={columnClassName[numColumns-1]}>
+          {fieldsByNumColumn.map((fieldArray) => (
+            fieldArray.map((field) => (
               <Field 
-                key={idField} 
-                field={fields[idField]}
+                key={field.id} 
+                field={field}
               />
-            ))} */}
-          </div>
-          {/* <div className="col-6">
-              col2
-          </div> */}
+            ))
+          ))}
+        </div> */}
       </div>
     </div>
   );

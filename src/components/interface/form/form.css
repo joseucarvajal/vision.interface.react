@@ -34,9 +34,3 @@
 .vision-float-left {
     float: right;
 }
-
-.vision-datepicker{
-    position: relative;
-    left: -30px;
-    top: 5px;
-}

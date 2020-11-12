@@ -6,6 +6,7 @@ import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import calendarImg from "../../../../images/CALENDAR.gif"
+import "./fieldDate.css";
 
 interface IFieldDateProps {
   field: IField;

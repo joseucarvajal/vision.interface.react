@@ -80,6 +80,8 @@ const FieldDate: React.FC<IFieldDateProps> = ({ field }) => {
 
   return (
     <label>
+      <div className="row">
+        <div className="col-7">
       <DatePicker className="form-control"
         selected={fieldValue} 
         onChange={onChange} 
@@ -92,10 +94,14 @@ const FieldDate: React.FC<IFieldDateProps> = ({ field }) => {
         dropdownMode="select"
         isClearable
       />
-      <img className="date-picker-icon"
+      </div>
+      <div className="col-1">
+      <img className="vision-datepicker"
         src={calendarImg} 
         title={imgTitle}
         alt={imgTitle}/> 
+        </div>
+        </div>
     </label>
   );
 };

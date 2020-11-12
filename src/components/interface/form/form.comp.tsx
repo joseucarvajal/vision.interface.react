@@ -56,6 +56,7 @@ function Form() {
                   key={sectionId}
                   section={data.sections[sectionId]}
                   fields={data.fields}
+                  staticLookups={data.staticLookups}
                 ></Section>
               ))}
             </div>

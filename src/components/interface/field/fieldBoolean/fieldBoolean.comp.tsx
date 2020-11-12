@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { IField } from "../../../../shared/contracts/types";
 import { useQueryCache } from "react-query";
-import UseChangeFieldValue from "../../../../hooks/api/useChangeFieldValue";
+import UseChangeFieldValue from "../../../../hooks/interface/useChangeFieldValue";
+
 
 interface IFieldBooleanProps {
   field: IField;

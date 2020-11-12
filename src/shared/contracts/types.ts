@@ -16,16 +16,17 @@ export interface ISectionHash {
     [id: string]: ISection
 }
 
-export type FieldType = "String" | "Boolean" | "Date";
+export type FieldType = "String" | "Boolean" | "Date" | "StaticLookup";
 
 export interface IField {
     column: number;
     id: string;
-    isCustom: boolean;
-    isUnique: boolean;
     height: number;
     hidden: boolean;
     hint: string;
+    isCustom: boolean;
+    isUnique: boolean;
+    lookupKey: string;
     maxLength: number;
     name: string;
     order: number;
@@ -41,10 +42,21 @@ export interface IField {
 export interface IFieldHash {
     [id: string]: IField
 }
+
+export interface IStaticLookupHash {
+    [id: string]: IDictionary[]
+}
+
 export interface IInterfaceForm {
     form: IForm;
     sections: ISectionHash;
     fields: IFieldHash;
+    staticLookups: IStaticLookupHash;
+}
+
+export interface IDictionary {
+    key: string;
+    value: string;
 }
 
 export interface IApiError {

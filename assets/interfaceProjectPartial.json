@@ -17,11 +17,37 @@
                 "investment_code",
                 "key_id",
                 "co_substantial_perf",
-                "co_cav_cert_subpe_da"
+                "co_cav_cert_subpe_da",
+                "impactcode",
+                "unit"
             ]
         }
     },
     "fields": {
+        "impactcode": {
+            "id": "impactcode",
+            "isCustom": true,
+            "lookupKey": "RIM_IMPACT",
+            "name": "Impact",
+            "sectionId": "PPMS00019",
+            "value": "MAJOR",
+            "type": "StaticLookup",
+            "required": false,
+            "column": 2,
+            "order": 2
+        },
+        "unit": {
+            "id": "unit",
+            "isCustom": true,
+            "lookupKey": "CAL_RECUR_EVERY",
+            "name": "ImpSchedule Unitact",
+            "sectionId": "PPMS00019",
+            "value": "W",
+            "type": "StaticLookup",
+            "required": false,
+            "column": 2,
+            "order": 3
+        },
         "co_cav_cert_subpe_da": {
             "id": "co_cav_cert_subpe_da",
             "isCustom": true,
@@ -82,5 +108,47 @@
             "value": "React Project",
             "width": 50
         }
+    },
+    "staticLookups": {
+        "RIM_IMPACT": [
+            {
+                "key": "LOW",
+                "value": "Low"
+            },
+            {
+                "key": "MINOR",
+                "value": "Minor"
+            },
+            {
+                "key": "MEDIUM",
+                "value": "Medium"
+            },
+            {
+                "key": "MAJOR",
+                "value": "Major"
+            },
+            {
+                "key": "HIGH",
+                "value": "High"
+            }
+        ],
+        "CAL_RECUR_EVERY": [
+            {
+                "key": "D",
+                "value": "Days"
+            },
+            {
+                "key": "W",
+                "value": "Weeks"
+            },
+            {
+                "key": "M",
+                "value": "Months"
+            },
+            {
+                "key": "Y",
+                "value": "Years"
+            }
+        ]
     }
 }

@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { IField, IInterfaceForm } from "../../../../shared/contracts/types";
+import { IField } from "../../../../shared/contracts/types";
 import { useQueryCache } from "react-query";
-import { ApiEndPoints } from "../../../../api";
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
-import 'bootstrap/dist/css/bootstrap.min.css';
 import calendarImg from "../../../../images/CALENDAR.gif"
 import "./fieldDate.css";
-import UseChangeFieldValue from "../../../../hooks/api/useChangeFieldValue";
+import UseChangeFieldValue from "../../../../hooks/interface/useChangeFieldValue";
 
 interface IFieldDateProps {
   field: IField;

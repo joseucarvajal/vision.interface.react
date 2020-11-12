@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { IField } from "../../../../shared/contracts/types";
+import { IField, IStaticLookupHash } from "../../../../shared/contracts/types";
 import { useQueryCache } from "react-query";
 import UseChangeFieldValue from "../../../../hooks/interface/useChangeFieldValue";
 
-interface IFieldLargeStringProps {
+interface IFieldStaticProps {
   field: IField;
+  staticLookups: IStaticLookupHash;
 }
 
-const FieldLargeString: React.FC<IFieldLargeStringProps> = ({ field }) => {
+const FieldStaticLookup: React.FC<IFieldStaticProps> = ({ field, staticLookups }) => {
   const { value } = field;
   const queryCache = useQueryCache();
 
@@ -21,18 +22,21 @@ const FieldLargeString: React.FC<IFieldLargeStringProps> = ({ field }) => {
     setFieldValue(e.target.value);
     UseChangeFieldValue(queryCache, field, e.target.value);
   }
-  
-  return (
-    <textarea className="form-control"
+
+  const lookupValues = staticLookups[field.lookupKey];
+
+  return (    
+    <select className="form-control"
       value={fieldValue} 
-      onChange={onChange}               
-      cols = {field.width}
-      maxLength={field.maxLength} 
+      onChange={onChange}
       disabled={field.readOnly}
-      title={field.tooltip}
-      rows={field.height}              
-    />
-  );
+      title={field.tooltip} 
+    >
+      {lookupValues.map(({key, value}) => (
+            <option key={key} value={key}>{value}</option>
+      ))}
+    </select>
+);
 };
 
-export default FieldLargeString;
+export default FieldStaticLookup;

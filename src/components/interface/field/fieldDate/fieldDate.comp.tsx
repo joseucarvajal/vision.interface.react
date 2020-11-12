@@ -7,6 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import calendarImg from "../../../../images/CALENDAR.gif"
 import "./fieldDate.css";
+import UseChangeFieldValue from "../../../../hooks/api/useChangeFieldValue";
 
 interface IFieldDateProps {
   field: IField;
@@ -53,21 +54,10 @@ const FieldDate: React.FC<IFieldDateProps> = ({ field }) => {
 
   const onChange = (date: Date) => {
     setFieldValue(date);
-    queryCache.setQueryData<IInterfaceForm>(
-      [ApiEndPoints.GetForm],
-      (previous: any) => {
-        console.log({previous});
-        return {
-          ...previous,
-          fields:{
-            ...previous.fields,
-            [field.id]:{
-              ...field,
-              value: (date == null ? "" : formatDate(date))
-            }
-          }
-        };
-      }
+    UseChangeFieldValue(
+      queryCache, 
+      field, 
+      (date == null ? "" : formatDate(date))
     );
   }
 

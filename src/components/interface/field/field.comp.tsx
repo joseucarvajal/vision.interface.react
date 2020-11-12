@@ -12,15 +12,12 @@ interface IFieldProps {
 const Field: React.FC<IFieldProps> = ({ field }) => {
   return (
     <div className="row mt-1">
-          <div className="col-6 vision-right">
-            {/* {field.required && <span className="vision-required">*&nbsp;</span>}            
-            {field.isUnique && <span className="vision-unique">*&nbsp;</span>}            
-            <span className="vision-float-left">{field.name}</span> */}
+          <div className="col-4 vision-right">
             {field.required && <label className="vision-required">*&nbsp;</label>}            
             {field.isUnique && <label className="vision-unique">*&nbsp;</label>}            
             <label>{field.name}</label>
           </div>
-          <div className="col-6">
+          <div className="col-8">
             { field.type === "String" && !field.height && ( <FieldString key={field.id} field={field} /> ) }
             { field.type === "String" && field.height && ( <FieldLargeString key={field.id} field={field} /> ) }
             { field.type === "Boolean"  && ( <FieldBoolean key={field.id} field={field} /> ) }      

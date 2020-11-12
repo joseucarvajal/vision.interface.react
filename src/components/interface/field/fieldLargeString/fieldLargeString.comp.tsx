@@ -38,7 +38,7 @@ const FieldLargeString: React.FC<IFieldLargeStringProps> = ({ field }) => {
   }
   
   return (
-    <textarea
+    <textarea className="form-control"
       value={fieldValue} 
       onChange={onChange}               
       cols = {field.width}

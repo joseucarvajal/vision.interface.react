@@ -2,6 +2,10 @@ import React, { useState, useEffect } from "react";
 import { IField, IInterfaceForm } from "../../../../shared/contracts/types";
 import { useQueryCache } from "react-query";
 import { ApiEndPoints } from "../../../../api";
+import DatePicker from 'react-datepicker'
+import "react-datepicker/dist/react-datepicker.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import calendarImg from "../../../../images/CALENDAR.gif"
 
 interface IFieldDateProps {
   field: IField;
@@ -11,12 +15,14 @@ const FieldDate: React.FC<IFieldDateProps> = ({ field }) => {
   const { value } = field;
   const queryCache = useQueryCache();
 
-  const [fieldValue, setFieldValue] = useState(value); 
-
-  const getDateValue = () => {
-    let newValue = fieldValue;
-    if (fieldValue.indexOf('T') != -1) {
-      newValue = fieldValue.split('T')[0] + 'T00:00:00Z';
+  const getDateValue = (dateString: string) => {
+    if(!dateString)
+    {
+      return null;
+    }
+    let newValue = dateString;
+    if (value.indexOf('T') !== -1) {
+      newValue = dateString.split('T')[0] + 'T00:00:00Z';
     }
     else {
       newValue += 'T00:00:00Z';
@@ -30,14 +36,22 @@ const FieldDate: React.FC<IFieldDateProps> = ({ field }) => {
     return newDate;
   };
 
-  const dateValue = getDateValue();
+  const formatDate = (date: Date) => {
+      var d = new Date(date),
+          month = '' + (d.getMonth() + 1),
+          day = '' + d.getDate(),
+          year = d.getFullYear();
 
-  useEffect(() => {
-    setFieldValue(field.value);
-  }, [field.value]);
+      if (month.length < 2) 
+          month = '0' + month;
+      if (day.length < 2) 
+          day = '0' + day;
 
-  const onChange = (e:any) => {
-    setFieldValue(e.target.value);
+      return [year, month, day].join('-');
+  }
+
+  const onChange = (date: Date) => {
+    setFieldValue(date);
     queryCache.setQueryData<IInterfaceForm>(
       [ApiEndPoints.GetForm],
       (previous: any) => {
@@ -48,7 +62,7 @@ const FieldDate: React.FC<IFieldDateProps> = ({ field }) => {
             ...previous.fields,
             [field.id]:{
               ...field,
-              value: e.target.value
+              value: (date == null ? "" : formatDate(date))
             }
           }
         };
@@ -56,15 +70,33 @@ const FieldDate: React.FC<IFieldDateProps> = ({ field }) => {
     );
   }
 
+  const [fieldValue, setFieldValue] = useState(getDateValue(value));
+
+  useEffect(() => {
+      setFieldValue(getDateValue(field.value));
+  }, [field.value]);
+
+  const imgTitle = `Select ${field.name}`;
+
   return (
-    <input type="text" className="form-control"
-      value={fieldValue} 
-      onChange={onChange} 
-      size = {field.width}
-      maxLength={field.maxLength} 
-      disabled={field.readOnly}
-      title={field.tooltip}              
-    />
+    <label>
+      <DatePicker className="form-control"
+        selected={fieldValue} 
+        onChange={onChange} 
+        disabled={field.readOnly}
+        title={field.tooltip}
+        todayButton="Today"
+        strictParsing
+        showMonthDropdown
+        showYearDropdown
+        dropdownMode="select"
+        isClearable
+      />
+      <img className="date-picker-icon"
+        src={calendarImg} 
+        title={imgTitle}
+        alt={imgTitle}/> 
+    </label>
   );
 };
 

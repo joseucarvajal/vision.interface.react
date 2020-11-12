@@ -25,57 +25,51 @@ function Form() {
       {data ? (
         <>
           <div className="row">
-              <h1>{data.form.name}</h1>
+            <div className="col-12">
+                <h1>{data.form.name}</h1>
+            </div>
           </div>
-          
           <div className="row">
-                <table width="100%">
-                  <thead>
-                  </thead>
-                  <tbody>
-                    <tr>
-                        <td align="left" width="10%">
-                            <label className="vision-required">*</label>
-                            <label>= Required</label>
-                        </td>
-                        <td align="left" width="10%">
-                            <label className="vision-unique">*</label>
-                            <label>= Unique</label>
-                        </td>
-                        <td align="left" width="10%">
-                            <img src={enterOnce} className="vision-enterOnce" alt="Enter Once" />
-                            <label>= Enter Once</label>
-                        </td>
-                        <td align="right" width="70%">
-                                <img src={refresh} className="vision-refresh" alt="Refresh" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colSpan={4} align="right">
-                          <label>Actions</label>
-                        </td>
-                    </tr>
-                  </tbody>
-                </table>
+            <div className="col-2">
+              <label className="vision-required">*</label>
+              <label>= Required</label>
+            </div>
+            <div className="col-2">
+              <label className="vision-unique">*</label>
+              <label>= Unique</label>
+            </div>
+            <div className="col-2">
+              <img src={enterOnce} className="vision-enterOnce" alt="Enter Once" />
+              <label>= Enter Once</label>
+            </div>
+            <div className="col-6 text-right">
+              <img src={refresh} className="vision-refresh" alt="Refresh" />
+              <br/>
+              <label>Actions</label>
+            </div>
           </div>
-          
+
           <div className="row">
-                {data.form.sectionsIds.map((sectionId) => (
-                  <Section
-                    key={sectionId}
-                    section={data.sections[sectionId]}
-                    fields={data.fields}
-                  ></Section>
-                ))}
+            <div className="col-12">
+              {data.form.sectionsIds.map((sectionId) => (
+                <Section
+                  key={sectionId}
+                  section={data.sections[sectionId]}
+                  fields={data.fields}
+                ></Section>
+              ))}
+            </div>
           </div>
         </>
       ) : null}
 
       <div className="row">
-        <button onClick={sendDataToClarity}>Save data</button>
-        <button onClick={()=>{
-          queryCache.invalidateQueries(ApiEndPoints.GetForm);
-        }}>Refresh data</button>
+        <div className="col-12 mt-1">
+          <button className="btn btn-primary" onClick={sendDataToClarity}>Save data</button>
+          <button className="btn btn-primary ml-2" onClick={()=>{
+            queryCache.invalidateQueries(ApiEndPoints.GetForm);
+          }}>Refresh data</button>
+        </div>
       </div>
     </div>
   );

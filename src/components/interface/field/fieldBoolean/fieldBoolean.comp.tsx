@@ -40,7 +40,7 @@ const FieldBoolean: React.FC<IFieldBooleanProps> = ({ field }) => {
   const isChecked = fieldValue === "true" ? true : false;
 
   return (
-    <input type="checkbox" 
+    <input type="checkbox" className="form-check-input"
       checked={isChecked} 
       onChange={onChange} 
       title={field.tooltip}

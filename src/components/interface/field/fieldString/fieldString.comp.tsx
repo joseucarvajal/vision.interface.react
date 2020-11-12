@@ -38,7 +38,7 @@ const FieldString: React.FC<IFieldStringProps> = ({ field }) => {
   }
   
   return (
-    <input type="text"
+    <input type="text" className="form-control"
       value={fieldValue} 
       onChange={onChange} 
       size = {field.width}

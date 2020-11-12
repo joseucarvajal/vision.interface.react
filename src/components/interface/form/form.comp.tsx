@@ -35,16 +35,16 @@ function Form() {
                   <tbody>
                     <tr>
                         <td align="left" width="10%">
-                            <span className="vision-required">*</span>
-                            <span>= Required</span>
+                            <label className="vision-required">*</label>
+                            <label>= Required</label>
                         </td>
                         <td align="left" width="10%">
-                            <span className="vision-unique">*</span>
-                            <span>= Unique</span>
+                            <label className="vision-unique">*</label>
+                            <label>= Unique</label>
                         </td>
                         <td align="left" width="10%">
                             <img src={enterOnce} className="vision-enterOnce" alt="Enter Once" />
-                            <span>= Enter Once</span>
+                            <label>= Enter Once</label>
                         </td>
                         <td align="right" width="70%">
                                 <img src={refresh} className="vision-refresh" alt="Refresh" />
@@ -52,7 +52,7 @@ function Form() {
                     </tr>
                     <tr>
                         <td colSpan={4} align="right">
-                          <span>Actions</span>
+                          <label>Actions</label>
                         </td>
                     </tr>
                   </tbody>

@@ -39,7 +39,7 @@ const Section: React.FC<ISectionProps> = ({ section, fields }) => {
     <>
       <div className="col-12">
         <div className="row vision-sectiontitle">
-          <span>{title}</span>
+          <label>&nbsp;{title}</label>
         </div>
         <div className="row">
           {fieldsByNumColumn.map((fieldArray, index) => (

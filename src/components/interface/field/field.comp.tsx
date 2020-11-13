@@ -13,13 +13,10 @@ interface IFieldProps {
 
 const Field: React.FC<IFieldProps> = ({ field }) => {
 
-
   const interfaceNameFromQueryString = "project";
   const { error, isLoading, data } = useGetFormDefinition(
     interfaceNameFromQueryString
   );  
-
-    // const staticLookups2 = data?.staticLookups;
 
   return (
     <div className="row mt-1">

@@ -7,6 +7,7 @@ interface IFieldLargeStringProps {
 }
 
 const FieldLargeString: React.FC<IFieldLargeStringProps> = ({ field, setFieldValue }) => {
+  
   const { value } = field;
   const onChange = (e:any) => {
     setFieldValue(field, e.target.value);

@@ -1,5 +1,5 @@
 export const ApiEndPoints = {
-    GetForm: "a74bc761-4bfb-424d-9786-ffac1578a14e",
+    GetForm: "a3822de6-7454-4379-b3a2-b059697d7bd0",
     GetLookupValues: "/lookup/",
     SaveForm: ""
 }

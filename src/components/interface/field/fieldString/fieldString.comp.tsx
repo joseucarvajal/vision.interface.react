@@ -7,7 +7,6 @@ interface IFieldStringProps {
 }
 
 const FieldString: React.FC<IFieldStringProps> = ({ field, setFieldValue }) => {
-  console.log('Field string ' + field.name);
 
   const { value } = field;
   const onChange = (e:any) => {

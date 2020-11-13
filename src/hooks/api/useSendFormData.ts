@@ -4,7 +4,7 @@ import { IInterfaceForm } from "../../shared/contracts/types";
 export default function useSendFormData(data: IInterfaceForm|undefined) {
 
     const sendDataToClarity = () => {   
-        if(data == undefined){
+        if(data === undefined){
             console.log("Enviar para clarity UNDEFINED");
         }
         else{

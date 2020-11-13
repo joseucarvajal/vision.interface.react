@@ -8,7 +8,6 @@ interface IFieldStaticProps {
 }
 
 const FieldStaticLookup: React.FC<IFieldStaticProps> = ({ field, dictionaryLookup, setFieldValue }) => {
-  console.log('Field lookup static ' + field.name);
 
   const { value } = field;
   const onChange = (e:any) => {

@@ -16,7 +16,8 @@ export interface ISectionHash {
     [id: string]: ISection
 }
 
-export type FieldType = "String" | "Boolean" | "Date" | "StaticLookup";
+export type FieldType = "String" | "Boolean" | "Date" | "Lookup" | "MLookup";
+export type LookupType = "LOOKUP_SOURCE_STATIC" | "LOOKUP_SOURCE_DYNAMIC" | "LOOKUP_SOURCE_DEPENDENT";
 
 export interface IField {
     column: number;
@@ -27,6 +28,7 @@ export interface IField {
     isCustom: boolean;
     isUnique: boolean;
     lookupKey: string;
+    lookupType: LookupType;
     maxLength: number;
     name: string;
     order: number;

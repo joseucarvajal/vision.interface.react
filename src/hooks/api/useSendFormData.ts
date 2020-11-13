@@ -1,15 +1,15 @@
-import { useQueryCache } from "react-query";
-import {ApiEndPoints} from "../../api/";
+import { IInterfaceForm } from "../../shared/contracts/types";
 
 
-export default function useSendFormData() {
+export default function useSendFormData(data: IInterfaceForm|undefined) {
 
-    const queryCache = useQueryCache();
-
-    const data = queryCache.getQueryData([ApiEndPoints.GetForm]);
-    
-    const sendDataToClarity = () => {        
-        console.log("Enviar para clarity ", JSON.stringify(data));
+    const sendDataToClarity = () => {   
+        if(data == undefined){
+            console.log("Enviar para clarity UNDEFINED");
+        }
+        else{
+            console.log("Enviar para clarity ", JSON.stringify(data));
+        }
     }
 
     return sendDataToClarity;

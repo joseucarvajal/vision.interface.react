@@ -7,7 +7,6 @@ export default function useChangeFieldValue(queryCache: QueryCache, field: IFiel
   queryCache.setQueryData<IInterfaceForm>(
       [ApiEndPoints.GetForm],
       (previous: any) => {
-        console.log({previous});
         return {
           ...previous,
           fields:{

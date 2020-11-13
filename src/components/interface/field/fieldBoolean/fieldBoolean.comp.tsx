@@ -1,29 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { IField } from "../../../../shared/contracts/types";
-import { useQueryCache } from "react-query";
-import UseChangeFieldValue from "../../../../hooks/interface/useChangeFieldValue";
 
 
 interface IFieldBooleanProps {
   field: IField;
+  setFieldValue: (field: IField, value: string) => void;
 }
 
-const FieldBoolean: React.FC<IFieldBooleanProps> = ({ field }) => {
+const FieldBoolean: React.FC<IFieldBooleanProps> = ({ field, setFieldValue }) => {
   const { value } = field;
-  const queryCache = useQueryCache();
-
-  const [fieldValue, setFieldValue] = useState(value); 
-
-  useEffect(() => {
-    setFieldValue(field.value);
-  }, [field.value]);
-
+  
   const onChange = (e:any) => {
-    setFieldValue(e.target.checked.toString());
-    UseChangeFieldValue(queryCache, field, e.target.checked.toString());
+    setFieldValue(field, e.target.checked.toString());
   }
 
-  const isChecked = fieldValue === "true" ? true : false;
+  const isChecked = value === "true" ? true : false;
 
   return (
     <input type="checkbox" className="form-check-input"

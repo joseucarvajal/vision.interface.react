@@ -5,9 +5,10 @@ import Field from "../../field/field.comp";
 interface ISectionColumnProps {
   fieldsColumn: IField[];
   columnClass: string;
+  setFieldValue: (field:IField, value:string) => void;
 }
 
-const SectionColumn: React.FC<ISectionColumnProps> = ({ fieldsColumn, columnClass }) => {
+const SectionColumn: React.FC<ISectionColumnProps> = ({ fieldsColumn, columnClass, setFieldValue }) => {
 
   return (
     <div className={columnClass}>
@@ -15,6 +16,7 @@ const SectionColumn: React.FC<ISectionColumnProps> = ({ fieldsColumn, columnClas
           <Field 
             key={field.id} 
             field={field}
+            setFieldValue={setFieldValue}
           />
         ))
       }

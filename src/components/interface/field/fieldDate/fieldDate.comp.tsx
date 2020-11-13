@@ -1,19 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { IField } from "../../../../shared/contracts/types";
-import { useQueryCache } from "react-query";
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 import calendarImg from "../../../../images/CALENDAR.gif"
 import "./fieldDate.css";
-import UseChangeFieldValue from "../../../../hooks/interface/useChangeFieldValue";
 
 interface IFieldDateProps {
   field: IField;
+  setFieldValue: (field: IField, value: string) => void;
 }
 
-const FieldDate: React.FC<IFieldDateProps> = ({ field }) => {
+const FieldDate: React.FC<IFieldDateProps> = ({ field, setFieldValue }) => {
   const { value } = field;
-  const queryCache = useQueryCache();
 
   const getDateValue = (dateString: string) => {
     if(!dateString)
@@ -51,19 +49,8 @@ const FieldDate: React.FC<IFieldDateProps> = ({ field }) => {
   }
 
   const onChange = (date: Date) => {
-    setFieldValue(date);
-    UseChangeFieldValue(
-      queryCache, 
-      field, 
-      (date == null ? "" : formatDate(date))
-    );
+    setFieldValue(field, (date == null ? "" : formatDate(date)));
   }
-
-  const [fieldValue, setFieldValue] = useState(getDateValue(value));  
-
-  useEffect(() => {
-      setFieldValue(getDateValue(field.value));
-  }, [field.value]);
 
   const imgTitle = `Select ${field.name}`;
 
@@ -72,7 +59,7 @@ const FieldDate: React.FC<IFieldDateProps> = ({ field }) => {
       <div className="row">
         <div className="col-7">
       <DatePicker className="form-control"
-        selected={fieldValue} 
+        selected={getDateValue(value)} 
         onChange={onChange} 
         disabled={field.readOnly}
         title={field.tooltip}

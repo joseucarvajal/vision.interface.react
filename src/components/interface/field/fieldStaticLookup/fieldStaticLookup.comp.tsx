@@ -1,33 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { IDictionary, IField } from "../../../../shared/contracts/types";
-import { useQueryCache } from "react-query";
-import UseChangeFieldValue from "../../../../hooks/interface/useChangeFieldValue";
 
 interface IFieldStaticProps {
   field: IField;
   dictionaryLookup: IDictionary[];
+  setFieldValue: (field: IField, value: string) => void;
 }
 
-const FieldStaticLookup: React.FC<IFieldStaticProps> = ({ field, dictionaryLookup }) => {
-  console.log('Field ' + field.name);
+const FieldStaticLookup: React.FC<IFieldStaticProps> = ({ field, dictionaryLookup, setFieldValue }) => {
+  console.log('Field lookup static ' + field.name);
 
   const { value } = field;
-  const queryCache = useQueryCache();
-
-  const [fieldValue, setFieldValue] = useState(value); 
-
-  useEffect(() => {
-    setFieldValue(field.value);
-  }, [field.value]);
-
   const onChange = (e:any) => {
-    setFieldValue(e.target.value);
-    UseChangeFieldValue(queryCache, field, e.target.value);
+    setFieldValue(field, e.target.value);
   }
 
   return (    
     <select className="form-control"
-      value={fieldValue} 
+      value={value} 
       onChange={onChange}
       disabled={field.readOnly}
       title={field.tooltip} 

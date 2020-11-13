@@ -1,14 +1,15 @@
 import React from "react";
-import { ISection, IFieldHash } from "../../../shared/contracts/types";
+import { ISection, IFieldHash, IField } from "../../../shared/contracts/types";
 import SectionColumn from "./sectionColumn/sectionColumn.comp";
 import "./section.css";
 
 interface ISectionProps {
   section: ISection;
   fields: IFieldHash;
+  setFieldValue: (field:IField, value:string) => void;
 }
 
-const Section: React.FC<ISectionProps> = ({ section, fields }) => {
+const Section: React.FC<ISectionProps> = ({ section, fields, setFieldValue }) => {
   const { title, fieldsIds } = section;
 
   // className, index is num columns
@@ -47,6 +48,7 @@ const Section: React.FC<ISectionProps> = ({ section, fields }) => {
                     key={index}
                     fieldsColumn={fieldArray}
                     columnClass={columnClassName[numColumns-1]}
+                    setFieldValue={setFieldValue}
                   />
               ))}
             </div>

@@ -1,12 +1,6 @@
 import { useQuery } from "react-query";
-import { 
-  useClarityApi, 
-  ApiEndPoints 
-} from "../../api";
-import { 
-  IInterfaceForm, 
-  IApiError 
-} from "../../shared/contracts/types";
+import { useClarityApi, ApiEndPoints } from "../../api";
+import { IInterfaceForm, IApiError } from "../../shared/contracts/types";
 
 export default function useGetFormDefinition(interfaceCode: string) {
 
@@ -22,7 +16,7 @@ export default function useGetFormDefinition(interfaceCode: string) {
     doRequestFn,
     {
       refetchOnWindowFocus: false,
-      //staleTime: 5000,
+      staleTime: Infinity,
       //cacheTime: 0,
     }
   );

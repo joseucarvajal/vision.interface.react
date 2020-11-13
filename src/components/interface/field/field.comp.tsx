@@ -1,17 +1,26 @@
 import React from "react";
-import { IField, IStaticLookupHash } from "../../../shared/contracts/types";
+import { IField } from "../../../shared/contracts/types";
 import FieldString from "./fieldString/fieldString.comp"
 import FieldLargeString from "./fieldLargeString/fieldLargeString.comp"
 import FieldBoolean from "./fieldBoolean/fieldBoolean.comp"
 import FieldDate from "./fieldDate/fieldDate.comp"
 import FieldStaticLookup from "./fieldStaticLookup/fieldStaticLookup.comp"
+import useGetFormDefinition from "../../../hooks/api/useGetFormDefinition";
 
 interface IFieldProps {
   field: IField;
-  staticLookups: IStaticLookupHash;
 }
 
-const Field: React.FC<IFieldProps> = ({ field, staticLookups }) => {
+const Field: React.FC<IFieldProps> = ({ field }) => {
+
+
+  const interfaceNameFromQueryString = "project";
+  const { error, isLoading, data } = useGetFormDefinition(
+    interfaceNameFromQueryString
+  );  
+
+    // const staticLookups2 = data?.staticLookups;
+
   return (
     <div className="row mt-1">
           <div className="col-4 vision-right">
@@ -24,7 +33,7 @@ const Field: React.FC<IFieldProps> = ({ field, staticLookups }) => {
             { field.type === "String" && field.height && ( <FieldLargeString key={field.id} field={field} /> ) }
             { field.type === "Boolean"  && ( <FieldBoolean key={field.id} field={field} /> ) }      
             { field.type === "Date"  && ( <FieldDate key={field.id} field={field} /> ) }      
-            { field.type === "StaticLookup"  && ( <FieldStaticLookup key={field.id} field={field} dictionaryLookup={staticLookups[field.lookupKey]} /> ) }      
+            { field.type === "StaticLookup" && data && ( <FieldStaticLookup key={field.id} field={field} dictionaryLookup={data.staticLookups[field.lookupKey]} /> ) }      
             {field.hint && <label>({field.hint})</label>}
           </div>
     </div>

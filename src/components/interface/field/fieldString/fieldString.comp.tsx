@@ -31,7 +31,7 @@ const FieldString: React.FC<IFieldStringProps> = ({ field }) => {
       disabled={field.readOnly}
       title={field.tooltip}      
     />
-);
+  );
 };
 
 export default FieldString;

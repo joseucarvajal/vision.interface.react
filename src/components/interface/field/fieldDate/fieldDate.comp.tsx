@@ -59,7 +59,7 @@ const FieldDate: React.FC<IFieldDateProps> = ({ field }) => {
     );
   }
 
-  const [fieldValue, setFieldValue] = useState(getDateValue(value));
+  const [fieldValue, setFieldValue] = useState(getDateValue(value));  
 
   useEffect(() => {
       setFieldValue(getDateValue(field.value));

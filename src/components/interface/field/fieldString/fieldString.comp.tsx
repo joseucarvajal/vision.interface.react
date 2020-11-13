@@ -21,7 +21,7 @@ const FieldString: React.FC<IFieldStringProps> = ({ field }) => {
     setFieldValue(e.target.value);
     UseChangeFieldValue(queryCache, field, e.target.value);
   }
-  
+
   return (    
     <input type="text" className="form-control"
       value={fieldValue} 
@@ -29,7 +29,7 @@ const FieldString: React.FC<IFieldStringProps> = ({ field }) => {
       size = {field.width}
       maxLength={field.maxLength} 
       disabled={field.readOnly}
-      title={field.tooltip}              
+      title={field.tooltip}      
     />
 );
 };

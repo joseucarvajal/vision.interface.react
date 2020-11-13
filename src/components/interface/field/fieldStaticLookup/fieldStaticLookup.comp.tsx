@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { IField, IStaticLookupHash } from "../../../../shared/contracts/types";
+import { IDictionary, IField } from "../../../../shared/contracts/types";
 import { useQueryCache } from "react-query";
 import UseChangeFieldValue from "../../../../hooks/interface/useChangeFieldValue";
 
 interface IFieldStaticProps {
   field: IField;
-  staticLookups: IStaticLookupHash;
+  dictionaryLookup: IDictionary[];
 }
 
-const FieldStaticLookup: React.FC<IFieldStaticProps> = ({ field, staticLookups }) => {
+const FieldStaticLookup: React.FC<IFieldStaticProps> = ({ field, dictionaryLookup }) => {
+  console.log('Field ' + field.name);
+
   const { value } = field;
   const queryCache = useQueryCache();
 
@@ -23,8 +25,6 @@ const FieldStaticLookup: React.FC<IFieldStaticProps> = ({ field, staticLookups }
     UseChangeFieldValue(queryCache, field, e.target.value);
   }
 
-  const lookupValues = staticLookups[field.lookupKey];
-
   return (    
     <select className="form-control"
       value={fieldValue} 
@@ -32,7 +32,7 @@ const FieldStaticLookup: React.FC<IFieldStaticProps> = ({ field, staticLookups }
       disabled={field.readOnly}
       title={field.tooltip} 
     >
-      {lookupValues.map(({key, value}) => (
+      {dictionaryLookup.map(({key, value}) => (
             <option key={key} value={key}>{value}</option>
       ))}
     </select>

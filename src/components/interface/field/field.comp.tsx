@@ -24,7 +24,7 @@ const Field: React.FC<IFieldProps> = ({ field, staticLookups }) => {
             { field.type === "String" && field.height && ( <FieldLargeString key={field.id} field={field} /> ) }
             { field.type === "Boolean"  && ( <FieldBoolean key={field.id} field={field} /> ) }      
             { field.type === "Date"  && ( <FieldDate key={field.id} field={field} /> ) }      
-            { field.type === "StaticLookup"  && ( <FieldStaticLookup key={field.id} field={field} staticLookups={staticLookups} /> ) }      
+            { field.type === "StaticLookup"  && ( <FieldStaticLookup key={field.id} field={field} dictionaryLookup={staticLookups[field.lookupKey]} /> ) }      
             {field.hint && <label>({field.hint})</label>}
           </div>
     </div>

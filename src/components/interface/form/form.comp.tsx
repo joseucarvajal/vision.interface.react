@@ -66,10 +66,10 @@ function Form() {
 
       <div className="row">
         <div className="col-12 mt-1">
-          <button className="btn btn-primary" onClick={sendDataToClarity}>Save data</button>
-          <button className="btn btn-primary ml-2" onClick={()=>{
+          <button className="btn btn-secondary" onClick={sendDataToClarity}>Save</button>
+          <button className="btn btn-secondary ml-2" onClick={()=>{
             queryCache.invalidateQueries(ApiEndPoints.GetForm);
-          }}>Refresh data</button>
+          }}>Refresh</button>
         </div>
       </div>
     </div>

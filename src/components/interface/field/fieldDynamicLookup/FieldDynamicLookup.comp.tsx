@@ -30,8 +30,8 @@ const FieldDynamicLookup: React.FC<IFieldDynamicLookupProps> = ({ field, diction
   const filterColors = (inputValue: string) => {
 
     return data?.filter( (x: any) =>
-      x.value.toLowerCase().includes(inputValue.toLowerCase())
-    ).map((d:any) => ({ label: d.value, value: d.key, fullLabel: `${d.value} ${d.key}` }));
+      x.label.toLowerCase().includes(inputValue.toLowerCase())
+    ).map((d:any) => ({ label: d.label, value: d.key, fullLabel: d.fullLabel }));
 
     // return (data?.map((d:any) => ({ label: d.value, value: d.key }))) 
 

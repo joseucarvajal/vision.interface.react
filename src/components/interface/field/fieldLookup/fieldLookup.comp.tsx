@@ -3,6 +3,7 @@ import { queryCache } from "react-query";
 import { ApiEndPoints } from "../../../../api";
 import { IField, IInterfaceForm } from "../../../../shared/contracts/types";
 import FieldStaticLookup from "../fieldStaticLookup/fieldStaticLookup.comp";
+import FieldDynamicLookup from "../fieldDynamicLookup/FieldDynamicLookup.comp";
 
 interface IFieldLookupProps {
   field: IField;
@@ -17,6 +18,8 @@ const FieldLookup: React.FC<IFieldLookupProps> = ({ field, setFieldValue }) => {
     <>
       { (field.lookupType === "LOOKUP_SOURCE_STATIC" && data) 
           && <FieldStaticLookup key={field.id} field={field} dictionaryLookup={data.staticLookups[field.lookupKey]} setFieldValue={setFieldValue}/>}
+      { (field.lookupType === "LOOKUP_SOURCE_DYNAMIC" && data) 
+          && <FieldDynamicLookup key={field.id} field={field} dictionaryLookup={data.staticLookups[field.lookupKey]} setFieldValue={setFieldValue}/>}
     </>
   );
 };

@@ -1,13 +1,13 @@
 import React from "react";
 import { IDictionary, IField } from "../../../../shared/contracts/types";
 
-interface IFieldStaticProps {
+interface IFieldStaticLookupProps {
   field: IField;
   dictionaryLookup: IDictionary[];
   setFieldValue: (field: IField, value: string) => void;
 }
 
-const FieldStaticLookup: React.FC<IFieldStaticProps> = ({ field, dictionaryLookup, setFieldValue }) => {
+const FieldStaticLookup: React.FC<IFieldStaticLookupProps> = ({ field, dictionaryLookup, setFieldValue }) => {
 
   const { value } = field;
   const onChange = (e:any) => {

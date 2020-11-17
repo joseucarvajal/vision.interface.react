@@ -64,3 +64,15 @@ export interface IDictionary {
 export interface IApiError {
     title: string; //descripción del error
 }
+
+
+export interface IDynamicLookupValues {
+    fieldsIds: IDynamicLookupValue[]
+}
+
+export interface IDynamicLookupValue {
+    key: string,
+    value: string,
+    color: string
+}
+

@@ -31,7 +31,7 @@ const FieldDynamicLookup: React.FC<IFieldDynamicLookupProps> = ({ field, diction
 
     return data?.filter( (x: any) =>
       x.value.toLowerCase().includes(inputValue.toLowerCase())
-    ).map((d:any) => ({ label: d.value, value: d.key }));
+    ).map((d:any) => ({ label: d.value, value: d.key, fullLabel: `${d.value} ${d.key}` }));
 
     // return (data?.map((d:any) => ({ label: d.value, value: d.key }))) 
 
@@ -69,7 +69,7 @@ const FieldDynamicLookup: React.FC<IFieldDynamicLookupProps> = ({ field, diction
         defaultOptions
         onInputChange={handleInputChange}
         formatOptionLabel={(option, { context }) => {
-          return context === 'menu' ? `${option.value} ${option.label}` : option.value;
+          return context === 'menu' ? `${option.fullLabel}` : option.value;
         }}
         />
     );

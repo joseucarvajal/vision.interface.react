@@ -60,60 +60,19 @@ const FieldDynamicLookup: React.FC<IFieldDynamicLookupProps> = ({ field, diction
       return <div>{option.CscID}</div>;
   };
 
-  // return (
-  //   <div>
-  //     <Select
-  //       options={[
-  //         {
-  //           id: 1,
-  //           CscID: "A",
-  //           CscDesc: "ADesc"
-  //         },
-  //         {
-  //           id: 2,
-  //           CscID: "b",
-  //           CscDesc: "ADesc"
-  //         },
-  //         {
-  //           id: 3,
-  //           CscID: "c",
-  //           CscDesc: "ADesc"
-  //         },
-  //       ]}
-  //       isMulti
-  //       menuIsOpen={true}
-  //       formatOptionLabel={(option, { context }) => {
-  //         return context === 'menu' ? option.id : option.CscID;
-  //       }}
-  //     />
-  //   </div>
-  // );
 
   return (
-    <Select
-      isMulti
-      cacheOptions
-      // loadOptions={loadOptions}
-      options={colourOptions}
-      defaultOptions
-      onInputChange={handleInputChange}
-      formatOptionLabel={(option, { context }) => {
-        return context === 'menu' ? `${option.value} ${option.label}` : option.value;
-      }}
-  />
-  );
-
-  // return (
-  //     <AsyncSelect
-  //       isMulti
-  //       cacheOptions
-  //       loadOptions={loadOptions}
-  //       defaultOptions
-  //       onInputChange={handleInputChange}
-  //       getOptionLabel={option =>`${option.value} ${option.label}`}
-  //       getOptionValue={option => `${option.value}`}
-  //     />
-  //   );
+      <AsyncSelect
+        isMulti
+        cacheOptions
+        loadOptions={loadOptions}
+        defaultOptions
+        onInputChange={handleInputChange}
+        formatOptionLabel={(option, { context }) => {
+          return context === 'menu' ? `${option.value} ${option.label}` : option.value;
+        }}
+        />
+    );
 };
 
 export default FieldDynamicLookup;

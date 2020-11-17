@@ -23,24 +23,20 @@ const FieldDynamicLookup: React.FC<IFieldDynamicLookupProps> = ({ field, diction
   const [state, setstate] = useState('');
 
   const { error, isLoading, data } = useGetDynamicLookupData(
-    field.lookupKey
+    field.lookupKey,
+    ''
   );
 
 
   const filterColors = (inputValue: string) => {
 
-    return data?.filter( (x: any) =>
-      x.label.toLowerCase().includes(inputValue.toLowerCase())
-    ).map((d:any) => ({ label: d.label, value: d.key, fullLabel: d.fullLabel }));
-
-    // return (data?.map((d:any) => ({ label: d.value, value: d.key }))) 
-
     // return data?.filter( (x: any) =>
     //   x.label.toLowerCase().includes(inputValue.toLowerCase())
-    // );
-    // return colourOptions.filter(i =>
-    //   i.label.toLowerCase().includes(inputValue.toLowerCase())
-    // );
+    // ).map((d:any) => ({ label: d.label, value: d.key, fullLabel: d.fullLabel }));
+
+    console.log("Field dynamic lookup data", data);
+
+    return (data?.map((d:any) => ({ label: d.value, value: d.key, fullLabel: d.fullLabel }))) ;
   };
   const loadOptions = (inputValue: any, callback: any) => {
     // setTimeout(() => {
@@ -56,10 +52,6 @@ const FieldDynamicLookup: React.FC<IFieldDynamicLookupProps> = ({ field, diction
     return inputValue;
   };
   
-  const formatOptionLabel = (option: { CscID:number, CscDesc:string }, context: { CscID:number, CscDesc:string }) => {
-      return <div>{option.CscID}</div>;
-  };
-
 
   return (
       <AsyncSelect
@@ -69,7 +61,7 @@ const FieldDynamicLookup: React.FC<IFieldDynamicLookupProps> = ({ field, diction
         defaultOptions
         onInputChange={handleInputChange}
         formatOptionLabel={(option, { context }) => {
-          return context === 'menu' ? `${option.fullLabel}` : option.value;
+          return context === 'menu' ? `${option.fullLabel}` : option.label;
         }}
         />
     );

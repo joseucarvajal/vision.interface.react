@@ -50,9 +50,18 @@ function interfaceReducer(
 }
 
 const Form: React.FC = () => {
-  const interfaceNameFromQueryString = "project";
+  // const queryStringValues = queryString.parse(window.location.search);
+  // const interfaceCode = queryStringValues.interfaceCode;
+  // const env = queryStringValues.env;
+
+  const search = window.location.search;
+  const params = new URLSearchParams(search);
+  const interfaceCode = params.get('interfaceCode');
+  const env = params.get('env');
+
   const { error, isLoading, data } = useGetFormDefinition(
-    interfaceNameFromQueryString
+    interfaceCode ? interfaceCode : "PPMI_OUT_RISKS",
+    env ? env : "env"
   );
 
 

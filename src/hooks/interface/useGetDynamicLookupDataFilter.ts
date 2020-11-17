@@ -1,11 +1,12 @@
 import { QueryCache } from "react-query";
 import useGetDynamicLookupData from '../api/useGetDynamicLookupData';
 
-export default function useGetDynamicLookupDataFilter(lookupKey: string, lookupFilter: string) {
+export default function useGetDynamicLookupDataFilter(lookupCode: string, filter: string) {
     const { error, isLoading, data } = useGetDynamicLookupData(
-        lookupKey
+        lookupCode,
+        filter
     );
 
-    console.log('useGetDynamicLookupDataFilter', lookupFilter);
+    console.log('useGetDynamicLookupDataFilter', lookupCode);
     return data;
 }

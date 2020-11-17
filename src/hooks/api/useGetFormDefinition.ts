@@ -2,12 +2,12 @@ import { useQuery } from "react-query";
 import { useClarityApi, ApiEndPoints } from "../../api";
 import { IInterfaceForm, IApiError } from "../../shared/contracts/types";
 
-export default function useGetFormDefinition(interfaceCode: string) {
+export default function useGetFormDefinition(interfaceCode: string, env: string) {
 
   const api = useClarityApi();
 
-  const doRequestFn = async (_: any, interfaceCode: string): Promise<IInterfaceForm> => {
-    const { data } = await api.get(`${ApiEndPoints.GetForm}/${interfaceCode}`);
+  const doRequestFn = async (_: any): Promise<IInterfaceForm> => {
+    const { data } = await api.get(`${ApiEndPoints.GetForm}?env=${env}&interfaceCode=${interfaceCode}`);
     return data;
   }
 

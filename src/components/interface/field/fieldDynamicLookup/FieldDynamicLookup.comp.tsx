@@ -3,7 +3,6 @@ import { IDictionary, IField } from "../../../../shared/contracts/types";
 import AsyncSelect from 'react-select/async';
 import { colourOptions } from '../../../../api/data'
 import useGetDynamicLookupData from '../../../../hooks/api/useGetDynamicLookupData';
-import useGetDynamicLookupDataFilter from '../../../../hooks/interface/useGetDynamicLookupDataFilter'
 import Select from "react-select";
 
 interface IFieldDynamicLookupProps {
@@ -20,13 +19,9 @@ const FieldDynamicLookup: React.FC<IFieldDynamicLookupProps> = ({ field, diction
     setFieldValue(field, e.target.value);
   }
 
-  const [state, setstate] = useState('');
-
-  const { error, isLoading, data } = useGetDynamicLookupData(
-    field.lookupKey,
-    ''
+  const { setLookupFilter, error, isLoading, data } = useGetDynamicLookupData(
+    field.lookupKey
   );
-
 
   const filterColors = (inputValue: string) => {
 
@@ -48,12 +43,15 @@ const FieldDynamicLookup: React.FC<IFieldDynamicLookupProps> = ({ field, diction
 
   const handleInputChange = (newValue: string) => {
     const inputValue = newValue.replace(/\W/g, '');
-    setstate(inputValue);
+    setLookupFilter(inputValue);
     return inputValue;
   };
   
 
   return (
+    <>
+    <div>{JSON.stringify(data)}</div>
+      
       <AsyncSelect
         isMulti
         cacheOptions
@@ -64,6 +62,7 @@ const FieldDynamicLookup: React.FC<IFieldDynamicLookupProps> = ({ field, diction
           return context === 'menu' ? `${option.fullLabel}` : option.label;
         }}
         />
+      </>
     );
 };
 

@@ -21,7 +21,7 @@ export default function useGetDynamicLookupData(lookupCode: string) {
     doRequestFn,
     {
       refetchOnWindowFocus: false,
-      //staleTime: Infinity,
+      staleTime: Infinity,
       cacheTime: 0,
     }
   );

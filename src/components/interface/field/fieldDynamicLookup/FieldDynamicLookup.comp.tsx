@@ -23,30 +23,44 @@ const FieldDynamicLookup: React.FC<IFieldDynamicLookupProps> = ({ field, diction
     field.lookupKey
   );
 
-  const filterColors = (inputValue: string) => {
+  const filterValues = (data2: any) => {
 
     // return data?.filter( (x: any) =>
     //   x.label.toLowerCase().includes(inputValue.toLowerCase())
     // ).map((d:any) => ({ label: d.label, value: d.key, fullLabel: d.fullLabel }));
 
-    console.log("Field dynamic lookup data", data);
+    console.log("Field dynamic lookup data", data2);
 
-    return (data?.map((d:any) => ({ label: d.value, value: d.key, fullLabel: d.fullLabel }))) ;
+    // return (colourOptions.map((d:any) => ({ label: d.label, value: d.value, fullLabel: `${d.value}|${d.label}` }))) ;
+
+    return (data2?.map((d:any) => ({ label: d.label, value: d.key, fullLabel: d.fullLabel }))) ;
   };
+
   const loadOptions = (inputValue: any, callback: any) => {
-    // setTimeout(() => {
-      callback(filterColors(inputValue));
-    // }, 1000);
+    //  setTimeout(() => {
+  //    callback(filterValues(inputValue));
+        callback(data?.map((d:any) => ({ label: d.label, value: d.key, fullLabel: d.fullLabel })));
+    //  }, 1000);
   };
 
 
 
   const handleInputChange = (newValue: string) => {
     const inputValue = newValue.replace(/\W/g, '');
+
+    console.log("handleInputChange", inputValue);
+
     setLookupFilter(inputValue);
     return inputValue;
   };
   
+  const promiseOptions = (inputValue: string) =>
+    new Promise(resolve => {
+        console.log("promiseOptions", inputValue);
+        setLookupFilter(inputValue);
+        resolve(filterValues(data));
+    }
+  );
 
   return (
     <>
@@ -55,11 +69,12 @@ const FieldDynamicLookup: React.FC<IFieldDynamicLookupProps> = ({ field, diction
       <AsyncSelect
         isMulti
         cacheOptions
-        loadOptions={loadOptions}
         defaultOptions
-        onInputChange={handleInputChange}
+        loadOptions={promiseOptions}
+        // loadOptions={loadOptions}
+        //onInputChange={handleInputChange}
         formatOptionLabel={(option, { context }) => {
-          return context === 'menu' ? `${option.fullLabel}` : option.label;
+          return context === 'menu' ? option.fullLabel : option.label;
         }}
         />
       </>

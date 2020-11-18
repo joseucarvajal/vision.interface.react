@@ -7,11 +7,10 @@ import Select from "react-select";
 
 interface IFieldDynamicLookupProps {
   field: IField;
-  dictionaryLookup: IDictionary[];
   setFieldValue: (field: IField, value: string) => void;
 }
 
-const FieldDynamicLookup: React.FC<IFieldDynamicLookupProps> = ({ field, dictionaryLookup, setFieldValue }) => {
+const FieldDynamicLookup: React.FC<IFieldDynamicLookupProps> = ({ field, setFieldValue }) => {
 
   const { value } = field;
 

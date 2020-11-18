@@ -50,18 +50,19 @@ function interfaceReducer(
 }
 
 const Form: React.FC = () => {
-  // const queryStringValues = queryString.parse(window.location.search);
-  // const interfaceCode = queryStringValues.interfaceCode;
-  // const env = queryStringValues.env;
 
   const search = window.location.search;
   const params = new URLSearchParams(search);
-  const interfaceCode = params.get('interfaceCode');
   const env = params.get('env');
+  const interfaceCode = params.get('interfaceCode');
+  const formType = params.get('formType');
+  const id = params.get('id');
 
   const { error, isLoading, data } = useGetFormDefinition(
+    env ? env : "env",
     interfaceCode ? interfaceCode : "PPMI_OUT_RISKS",
-    env ? env : "env"
+    formType ? formType : '',
+    id ? id : ''
   );
 
 

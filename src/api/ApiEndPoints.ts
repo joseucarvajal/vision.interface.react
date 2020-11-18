@@ -6,4 +6,4 @@ export const ApiEndPoints = {
     SaveForm: ""
 }
 
-// http://localhost:3000/?env=dev&interfaceCode=PPMI_OUT_RISKS
+// http://localhost:3000/?env=dev&interfaceCode=PPMI_OUT_RISKS&formType=0&id=1&parentCode=itroitestqa01

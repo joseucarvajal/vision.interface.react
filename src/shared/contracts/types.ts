@@ -29,6 +29,7 @@ export interface IField {
     isUnique: boolean;
     lookupKey: string;
     lookupType: LookupType;
+    dynamicLookupValues: IDynamicLookupValue[]
     maxLength: number;
     name: string;
     order: number;
@@ -65,14 +66,9 @@ export interface IApiError {
     title: string; //descripción del error
 }
 
-
-export interface IDynamicLookupValues {
-    fieldsIds: IDynamicLookupValue[]
-}
-
 export interface IDynamicLookupValue {
-    key: string,
+    label: string,
     value: string,
-    color: string
+    fullLabel: string
 }
 

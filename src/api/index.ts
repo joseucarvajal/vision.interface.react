@@ -1,7 +1,9 @@
 import useClarityApi from "./useClarityApi";
 import { ApiEndPoints } from "./ApiEndPoints";
+import { CLARITY_ENDPOINT } from "./constants";
 
 export {
     useClarityApi,
-    ApiEndPoints
+    ApiEndPoints,
+    CLARITY_ENDPOINT
 }

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useQuery } from "react-query";
 import { useClarityApi, ApiEndPoints } from "../../api";
-import { IApiError, IDynamicLookupValues } from "../../shared/contracts/types";
+import { IApiError } from "../../shared/contracts/types";
 
 export default function useGetDynamicLookupData(lookupCode: string) {
 

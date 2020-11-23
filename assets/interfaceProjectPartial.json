@@ -3,6 +3,7 @@
         "id": 5005020,
         "code": "PPMI_OUT_PROJECTS",
         "name": "Projects",
+        "attributeId": "key_id",
         "sectionsIds": [
             "PPMS00019"
         ]

@@ -1,31 +1,49 @@
 import React from "react";
-import { IDictionary, IField } from "../../../../shared/contracts/types";
+import Select from 'react-select'
+import { IDictionary, ILookupValue, IField } from "../../../../shared/contracts/types";
 
 interface IFieldStaticLookupProps {
   field: IField;
-  dictionaryLookup: IDictionary[];
+  dictionaryLookup: ILookupValue[];
   setFieldValue: (field: IField, value: string) => void;
 }
 
 const FieldStaticLookup: React.FC<IFieldStaticLookupProps> = ({ field, dictionaryLookup, setFieldValue }) => {
 
-  const { value } = field;
+  // const { value } = field;
+  // const onChange = (e:any) => {
+  //   setFieldValue(field, e.target.value);
+  // }
+
   const onChange = (e:any) => {
-    setFieldValue(field, e.target.value);
+    console.log('e', e);
+    if(e == null){
+      console.log('new value', '');
+      setFieldValue(field, '');
+    }
+    else{
+      if(field.type === "MLookup"){
+        console.log('new value', e.map(function(k:any){return k.value}).join("|"));
+        setFieldValue(field, e.map(function(k:any){return k.value}).join("|"));
+      }
+      else{
+        console.log('new value', e.value);
+        setFieldValue(field, e.value);
+      }
+    }
   }
 
+
   return (    
-    <select className="form-control"
-      value={value} 
-      onChange={onChange}
+    <Select 
+      options={ dictionaryLookup } 
+      isMulti={field.type === "MLookup"}
+      defaultValue={ field.lookupValues }
+      onChange={onChange} 
       disabled={field.readOnly}
-      title={field.tooltip} 
-    >
-      {dictionaryLookup.map(({key, value}) => (
-            <option key={key} value={key}>{value}</option>
-      ))}
-    </select>
-);
+      title={field.tooltip}
+    />
+  );
 };
 
 export default FieldStaticLookup;

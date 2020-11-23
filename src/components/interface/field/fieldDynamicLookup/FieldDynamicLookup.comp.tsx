@@ -18,15 +18,19 @@ const FieldDynamicLookup: React.FC<IFieldDynamicLookupProps> = ({ field, setFiel
 
   const onChange = (e:any) => {
     console.log('e', e);
-    if(e == null)
-    {
+    if(e == null){
       console.log('new value', '');
       setFieldValue(field, '');
     }
-    else
-    {
-      console.log('new value', e.map(function(k:any){return k.value}).join("|"));
-      setFieldValue(field, e.map(function(k:any){return k.value}).join("|"));
+    else{
+      if(field.type === "MLookup"){
+        console.log('new value', e.map(function(k:any){return k.value}).join("|"));
+        setFieldValue(field, e.map(function(k:any){return k.value}).join("|"));
+      }
+      else{
+        console.log('new value', e.value);
+        setFieldValue(field, e.value);
+      }
     }
   }
 
@@ -49,10 +53,12 @@ const FieldDynamicLookup: React.FC<IFieldDynamicLookupProps> = ({ field, setFiel
       defaultOptions
       onChange={onChange} 
       loadOptions={promiseOptions} 
+      disabled={field.readOnly}
+      title={field.tooltip}
       formatOptionLabel={(option, { context }) => {
         return context === 'menu' ? option.fullLabel : option.label;
       }}
-      defaultValue={ field.dynamicLookupValues }
+      defaultValue={ field.lookupValues }
     />
   );
 };

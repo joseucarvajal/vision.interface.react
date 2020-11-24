@@ -57,12 +57,14 @@ const Form: React.FC = () => {
   const interfaceCode = params.get('interfaceCode');
   const formType = params.get('formType');
   const id = params.get('id');
+  const parentCode = params.get('parentCode');
 
   const { error, isLoading, data } = useGetFormDefinition(
     env ? env : "env",
     interfaceCode ? interfaceCode : "PPMI_OUT_RISKS",
     formType ? formType : '',
-    id ? id : ''
+    id ? id : '',
+    parentCode ? parentCode : ''
   );
 
 

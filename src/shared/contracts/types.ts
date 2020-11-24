@@ -16,11 +16,12 @@ export interface ISectionHash {
     [id: string]: ISection
 }
 
-export type FieldType = "String" | "Boolean" | "Date" | "Lookup" | "MLookup";
+export type FieldType = "String" | "Boolean" | "Date" | "Lookup" | "MLookup" | "Numeric" | "Money";
 export type LookupType = "LOOKUP_SOURCE_STATIC" | "LOOKUP_SOURCE_DYNAMIC";
 
 export interface IField {
     column: number;
+    decimalPlaces: number;
     id: string;
     height: number;
     hidden: boolean;
@@ -36,10 +37,12 @@ export interface IField {
     required: boolean;
     readOnly: boolean;
     sectionId: string;
+    showCurrency: boolean;
     tooltip: string;
     type: FieldType;
     value: string;
     width: number;
+    currencyAttribute: ICurrencyAttribute;
 }
 
 export interface IFieldHash {
@@ -55,6 +58,11 @@ export interface IInterfaceForm {
     sections: ISectionHash;
     fields: IFieldHash;
     staticLookups: IStaticLookupHash;
+}
+
+export interface ICurrencyAttribute {
+    id: string;
+    value: string;
 }
 
 export interface IDictionary {

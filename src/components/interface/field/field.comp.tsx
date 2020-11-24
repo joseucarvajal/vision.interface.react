@@ -5,6 +5,8 @@ import FieldLargeString from "./fieldLargeString/fieldLargeString.comp"
 import FieldBoolean from "./fieldBoolean/fieldBoolean.comp"
 import FieldDate from "./fieldDate/fieldDate.comp"
 import FieldLookup from "./fieldLookup/fieldLookup.comp"
+import FieldNumeric from "./fieldNumeric/fieldNumeric.comp"
+import FieldMoney from "./fieldMoney/fieldMoney.comp"
 
 interface IFieldProps {
   field: IField;
@@ -25,6 +27,8 @@ const Field: React.FC<IFieldProps> = ({ field, setFieldValue }) => {
             { field.type === "String" && field.height && ( <FieldLargeString key={field.id} field={field} setFieldValue={setFieldValue}/> ) }
             { field.type === "Boolean"  && ( <FieldBoolean key={field.id} field={field} setFieldValue={setFieldValue}/> ) }      
             { field.type === "Date"  && ( <FieldDate key={field.id} field={field} setFieldValue={setFieldValue}/> ) }      
+            { field.type === "Numeric"  && ( <FieldNumeric key={field.id} field={field} setFieldValue={setFieldValue}/> ) }      
+            { field.type === "Money"  && ( <FieldMoney key={field.id} field={field} setFieldValue={setFieldValue}/> ) }      
             { (field.type === "Lookup" || field.type === "MLookup") && ( <FieldLookup key={field.id} field={field} setFieldValue={setFieldValue}/> ) }      
             {field.hint && <label>({field.hint})</label>}
           </div>

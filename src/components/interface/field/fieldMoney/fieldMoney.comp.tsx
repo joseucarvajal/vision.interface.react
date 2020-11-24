@@ -18,8 +18,6 @@ const FieldMoney: React.FC<IFieldMoneygProps> = ({ field, setFieldValue }) => {
   const [lookupCurrency, setLookupCurrency] = useState(field.showCurrency ? value.split('|')[1] : '');
 
   const onChange = (e:any) => {
-    console.log('Cambio valor', e.toString(), lookupCurrency);
-
     if(!field.showCurrency){
       setFieldValue(field, e === null ? '' : e.toString());
     }
@@ -29,7 +27,6 @@ const FieldMoney: React.FC<IFieldMoneygProps> = ({ field, setFieldValue }) => {
   }
   const onChangeCurrency = (e:any) => {
     setLookupCurrency(e.value);
-    console.log('Cambio currency', value.split('|')[0], e.value);
     setFieldValue(field, `${value.split('|')[0]}|${e.value}`);
   }
 
@@ -43,25 +40,29 @@ const FieldMoney: React.FC<IFieldMoneygProps> = ({ field, setFieldValue }) => {
   }
 
   return (    
-    <>
-      <NumericInput className="form-control"
-        value={value.split('|')[0]}
-        onChange={onChange} 
-        disabled={field.readOnly}
-        title={field.tooltip}
-        required={field.required}
-        precision={field.decimalPlaces}
-        format={num => (num + '$')}
-      />
-      {field.showCurrency && 
-        <Select
-          options={ data?.staticLookups['LOOKUP_CURRENCIES'] } 
-          defaultValue={ currencyDefaultValue }
+    <div className="row mt-1">
+      <div className="col-8">
+        <NumericInput className="form-control"
+          value={value.split('|')[0]}
+          onChange={onChange} 
           disabled={field.readOnly}
-          onChange={onChangeCurrency} 
+          title={field.tooltip}
+          required={field.required}
+          precision={field.decimalPlaces}
+          format={num => (num + '$')}
+        />
+      </div>
+      {field.showCurrency && 
+        <div className="col-4">
+          <Select
+            options={ data?.staticLookups['LOOKUP_CURRENCIES'] } 
+            defaultValue={ currencyDefaultValue }
+            disabled={field.readOnly}
+            onChange={onChangeCurrency} 
           />
+        </div>
       }
-    </>
+    </div>
   );
 };
 

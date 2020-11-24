@@ -10,11 +10,6 @@ interface IFieldStaticLookupProps {
 
 const FieldStaticLookup: React.FC<IFieldStaticLookupProps> = ({ field, dictionaryLookup, setFieldValue }) => {
 
-  // const { value } = field;
-  // const onChange = (e:any) => {
-  //   setFieldValue(field, e.target.value);
-  // }
-
   const onChange = (e:any) => {
     console.log('e', e);
     if(e == null){
@@ -35,7 +30,7 @@ const FieldStaticLookup: React.FC<IFieldStaticLookupProps> = ({ field, dictionar
 
 
   return (    
-    <Select 
+    <Select
       options={ dictionaryLookup } 
       isMulti={field.type === "MLookup"}
       defaultValue={ field.lookupValues }

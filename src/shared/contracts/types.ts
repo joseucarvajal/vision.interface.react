@@ -42,7 +42,6 @@ export interface IField {
     type: FieldType;
     value: string;
     width: number;
-    currencyAttribute: ICurrencyAttribute;
 }
 
 export interface IFieldHash {
@@ -58,11 +57,6 @@ export interface IInterfaceForm {
     sections: ISectionHash;
     fields: IFieldHash;
     staticLookups: IStaticLookupHash;
-}
-
-export interface ICurrencyAttribute {
-    id: string;
-    value: string;
 }
 
 export interface IDictionary {

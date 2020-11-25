@@ -57,7 +57,22 @@ export interface IInterfaceForm {
     sections: ISectionHash;
     fields: IFieldHash;
     staticLookups: IStaticLookupHash;
+    events: IEvent[];
 }
+
+export type EventAction = "PRC" | "LINK";
+
+export interface IEvent {
+    id: string;
+    name: string;
+    action: EventAction;
+    attributeId: string;
+    value: string;
+    order: number;
+    url: string;
+    disabled: boolean;
+}
+
 
 export interface IDictionary {
     key: string;

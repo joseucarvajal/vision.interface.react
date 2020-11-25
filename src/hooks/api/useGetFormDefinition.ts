@@ -8,6 +8,7 @@ export default function useGetFormDefinition( env: string, interfaceCode: string
 
   const doRequestFn = async (_: any): Promise<IInterfaceForm> => {
     const { data } = await api.get(`${ApiEndPoints.GetForm}?env=${env}&interfaceCode=${interfaceCode}&formType=${formType}&id=${id}&parentCode=${parentCode}`);
+    // console.log('data', data);
     return data;
   }
 

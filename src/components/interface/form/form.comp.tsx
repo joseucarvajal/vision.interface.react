@@ -8,6 +8,7 @@ import refresh from "../../../images/refresh.png"
 import enterOnce from "../../../images/ICONGO.gif"
 import "./form.css";
 import { IField, IInterfaceForm } from "../../../shared/contracts/types";
+import InterfaceActions from "../events/interfaceActions.comp";
 
 export const SET_INPUT_VALUE = "SET_INPUT_VALUE";
 export const SET_INITIAL_STATE = "SET_INITIAL_STATE";
@@ -60,13 +61,16 @@ const Form: React.FC = () => {
   const parentCode = params.get('parentCode');
 
   const { error, isLoading, data } = useGetFormDefinition(
-    env ? env : "env",
-    interfaceCode ? interfaceCode : "PPMI_OUT_RISKS",
+    env ? env : "",
+    interfaceCode ? interfaceCode : "",
     formType ? formType : '',
     id ? id : '',
     parentCode ? parentCode : ''
   );
 
+  const reloadForm = () => {
+    console.log('reloadForm');
+  }
 
   const [state, dispatch] = useReducer(interfaceReducer, data);
 
@@ -124,9 +128,13 @@ const Form: React.FC = () => {
               <label>= Enter Once</label>
             </div>
             <div className="col-6 text-right">
-              <img src={refresh} className="vision-refresh" alt="Refresh" />
+              <img src={refresh} className="vision-refresh" alt="Refresh" 
+                onClick={()=>{
+                  reloadForm();
+                }}
+              />
               <br/>
-              <label>Actions</label>
+              <InterfaceActions key="actions"/>
             </div>
           </div>
 

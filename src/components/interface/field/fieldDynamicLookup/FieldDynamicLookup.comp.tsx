@@ -53,7 +53,7 @@ const FieldDynamicLookup: React.FC<IFieldDynamicLookupProps> = ({ field, setFiel
       defaultOptions
       onChange={onChange} 
       loadOptions={promiseOptions} 
-      disabled={field.readOnly}
+      isDisabled={field.readOnly}      
       title={field.tooltip}
       formatOptionLabel={(option, { context }) => {
         return context === 'menu' ? option.fullLabel : option.label;

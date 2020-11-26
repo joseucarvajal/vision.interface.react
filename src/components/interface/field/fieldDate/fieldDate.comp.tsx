@@ -69,7 +69,7 @@ const FieldDate: React.FC<IFieldDateProps> = ({ field, setFieldValue }) => {
         showMonthDropdown
         showYearDropdown
         dropdownMode="select"
-        isClearable
+        isClearable={!field.readOnly}
       />
       </div>
       <div className="col-1">

@@ -59,6 +59,7 @@ const FieldMoney: React.FC<IFieldMoneygProps> = ({ field, setFieldValue }) => {
             defaultValue={ currencyDefaultValue }
             disabled={field.readOnly}
             onChange={onChangeCurrency} 
+            isDisabled={field.readOnly}
           />
         </div>
       }

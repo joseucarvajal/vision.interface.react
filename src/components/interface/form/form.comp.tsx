@@ -103,6 +103,24 @@ const Form: React.FC = () => {
     }
   }, [data]);
 
+
+    let actionRefresh;
+    if(formType != '0'){
+      actionRefresh = 
+      <div>
+        <img src={refresh} className="vision-refresh" alt="Refresh" 
+          onClick={()=>{
+            reloadForm();
+          }}
+        />
+        <br/>      
+        <InterfaceActions key="actions"
+          events={state?.events}
+          fields={state?.fields}
+          setFieldValue={setFieldValue}/>
+      </div>;
+    }
+
   return (
     <div className="container">
       {isLoading && <div>Loading</div>}
@@ -128,13 +146,7 @@ const Form: React.FC = () => {
               <label>= Enter Once</label>
             </div>
             <div className="col-6 text-right">
-              <img src={refresh} className="vision-refresh" alt="Refresh" 
-                onClick={()=>{
-                  reloadForm();
-                }}
-              />
-              <br/>
-              <InterfaceActions key="actions"/>
+              {actionRefresh}
             </div>
           </div>
 
@@ -155,13 +167,15 @@ const Form: React.FC = () => {
 
       <div className="row">
         <div className="col-12 mt-1">
-          <button className="btn btn-secondary" onClick={sendDataToClarity}>Save</button>
-          <button className="btn btn-secondary ml-2" 
-            onClick={()=>{
-              const data = queryCache.getQueryData<IInterfaceForm>(ApiEndPoints.GetForm);            
-              setInitialState(data);
-            }}
-          >Refresh</button>
+        <button className="btn btn-secondary ml-2" onClick={sendDataToClarity}>Save</button>
+        <button className="btn btn-secondary ml-2" onClick={sendDataToClarity}>Save And Return</button>
+        <button className="btn btn-secondary ml-2" onClick={sendDataToClarity}>Return</button>
+        <button className="btn btn-secondary ml-2" 
+          onClick={()=>{
+            const data = queryCache.getQueryData<IInterfaceForm>(ApiEndPoints.GetForm);            
+            setInitialState(data);
+          }}>Refresh
+        </button>
         </div>
       </div>
     </div>

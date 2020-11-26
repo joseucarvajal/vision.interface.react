@@ -28,15 +28,14 @@ const FieldStaticLookup: React.FC<IFieldStaticLookupProps> = ({ field, dictionar
     }
   }
 
-
   return (    
     <Select
       options={ dictionaryLookup } 
       isMulti={field.type === "MLookup"}
       defaultValue={ field.lookupValues }
       onChange={onChange} 
-      disabled={field.readOnly}
-      title={field.tooltip}
+      isDisabled={field.readOnly}      
+      title={field.tooltip}      
     />
   );
 };

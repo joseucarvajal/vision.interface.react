@@ -1,18 +1,21 @@
 import React from "react";
 import { queryCache } from "react-query";
 import { ApiEndPoints } from "../../../api";
-import { IInterfaceForm } from "../../../shared/contracts/types";
+import { IField, IInterfaceForm, IEvent, IFieldHash } from "../../../shared/contracts/types";
 import "./interfaceActions.css";
 
 interface IActionsProps {
+  events?: IEvent[];
+  fields?: IFieldHash;
+  setFieldValue: (field:IField, value:string) => void;
 }
 
-const InterfaceActions: React.FC<IActionsProps> = () => {
+const InterfaceActions: React.FC<IActionsProps> = ({ events, fields, setFieldValue }) => {
 
-  const  data = queryCache.getQueryData<IInterfaceForm>([ApiEndPoints.GetForm]);
-
-  const onClickProcess = (e:any) => {
-    console.log('onClickProcess', e);
+  const ProcessEvent = (id: string, value: string) => {
+      if(fields){
+        setFieldValue(fields[id], value);
+      }
   }
 
   return (    
@@ -21,11 +24,17 @@ const InterfaceActions: React.FC<IActionsProps> = () => {
         <label>Actions ▾</label>
         <ul className="actions-menu">
           { 
-            data?.events.map((event) => (
+            events?.map((event) => (
               <li>
                 {event.action === "LINK" && <a href={event.url} target="_blank">{event.name}</a>}
                 {event.action === "PRC" && event.disabled && <a href='#' className="isDisabled">{event.name}</a>}
-                {event.action === "PRC" && !event.disabled && <a href='#' onClick={onClickProcess}>{event.name}</a>}
+                {event.action === "PRC" && !event.disabled && 
+                  <a href='#'  
+                    onClick={()=>{
+                      ProcessEvent(event.attributeId, event.value);                      
+                    }}
+                  >{event.name}</a>
+                }
               </li>
             ))
           }

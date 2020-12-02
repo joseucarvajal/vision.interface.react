@@ -19,28 +19,32 @@ const InterfaceActions: React.FC<IActionsProps> = ({ events, fields, setFieldVal
   }
 
   return (    
-    <>
-      <div className="actions">
-        <label>Actions ▾</label>
-        <ul className="actions-menu">
-          { 
-            events?.map((event) => (
-              <li>
-                {event.action === "LINK" && <a href={event.url} target="_blank">{event.name}</a>}
-                {event.action === "PRC" && event.disabled && <a href='#' className="isDisabled">{event.name}</a>}
-                {event.action === "PRC" && !event.disabled && 
-                  <a href='#'  
-                    onClick={()=>{
-                      ProcessEvent(event.attributeId, event.value);                      
-                    }}
-                  >{event.name}</a>
-                }
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-    </>
+    <nav className="navbar navbar-expand-sm">
+      <ul className="navbar-nav">
+        <li className="nav-item dropdown">
+          <a className="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+            Actions
+          </a>
+          <div className="dropdown-menu">
+            { 
+              events?.map((event) => (
+                <>
+                  {event.action === "LINK" && <a className="dropdown-item" href={event.url} target="_blank">{event.name}</a>}
+                  {event.action === "PRC" && event.disabled && <a className="dropdown-item isDisabled" href='#'>{event.name}</a>}
+                  {event.action === "PRC" && !event.disabled && 
+                    <a className="dropdown-item" href='#'  
+                      onClick={()=>{
+                        ProcessEvent(event.attributeId, event.value);                      
+                      }}
+                    >{event.name}</a>
+                  }
+                </>
+              ))
+            }
+          </div>
+        </li>
+      </ul>
+    </nav>
   );
 };
 

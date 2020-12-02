@@ -54,6 +54,7 @@ export interface IStaticLookupHash {
 
 export interface IInterfaceForm {
     form: IForm;
+    env: string;
     sections: ISectionHash;
     fields: IFieldHash;
     staticLookups: IStaticLookupHash;

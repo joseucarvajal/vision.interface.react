@@ -74,7 +74,8 @@ const Form: React.FC = () => {
 
   const [state, dispatch] = useReducer(interfaceReducer, data);
 
-  const sendDataToClarity = useSendFormData(state);
+  const onClickSave = useSendFormData(state);
+  const onClickSaveAndReturn = useSendFormData(state);
 
   const queryCache = useQueryCache();
 
@@ -104,80 +105,102 @@ const Form: React.FC = () => {
   }, [data]);
 
 
-    let actionRefresh;
-    if(formType != '0'){
-      actionRefresh = 
-      <div>
-        <img src={refresh} className="vision-refresh" alt="Refresh" 
-          onClick={()=>{
-            reloadForm();
-          }}
-        />
-        <br/>      
-        <InterfaceActions key="actions"
-          events={state?.events}
-          fields={state?.fields}
-          setFieldValue={setFieldValue}/>
-      </div>;
-    }
+  let actionRefresh;
+  if(formType !== '0'){
+    actionRefresh = 
+    <div>
+      <img src={refresh} className="vision-refresh" alt="Refresh" 
+        onClick={()=>{
+          reloadForm();
+        }}
+      />
+      <InterfaceActions key="actions"
+        events={state?.events}
+        fields={state?.fields}
+        setFieldValue={setFieldValue}/>
+    </div>;
+  }
+
+  let saveButtons;
+  if(formType === '0' || formType === '2'){
+    saveButtons = 
+    <>
+        <button className="btn btn-secondary ml-2" onClick={onClickSave}>Save</button>
+        <button className="btn btn-secondary ml-2" onClick={onClickSaveAndReturn}>Save And Return</button>
+    </>;
+  }
+
+
+  const afterSubmission = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+  }
+
+  const onClickReturn = () =>{    
+  }
+
 
   return (
     <div className="container">
-      {isLoading && <div>Loading</div>}
-      {error && <div>{error.title}</div>}
-      {state ? (
-        <>
-          <div className="row">
-            <div className="col-12">
-                <h1>{state.form.name}</h1>
+      <form onSubmit = {afterSubmission}>
+        {isLoading && <div>Loading</div>}
+        {error && <div>{error.title}</div>}
+        {state ? (
+          <>
+            <div className="row">
+              <div className="col-12">
+                  <h1>{state.form.name}</h1>
+              </div>
             </div>
-          </div>
-          <div className="row">
-            <div className="col-2">
-              <label className="vision-required">*</label>
-              <label>= Required</label>
+            <div className="row">
+              <div className="col-2">
+                <label className="vision-required">*</label>
+                <label>= Required</label>
+              </div>
+              <div className="col-2">
+                <label className="vision-unique">*</label>
+                <label>= Unique</label>
+              </div>
+              <div className="col-2">
+                <img src={enterOnce} className="vision-enterOnce" alt="Enter Once" />
+                <label>= Enter Once</label>
+              </div>
+              <div className="col-2">
+              </div>
+              <div className="col-2">
+              </div>
+              <div className="col-2 vision-right">
+                {actionRefresh}
+              </div>
             </div>
-            <div className="col-2">
-              <label className="vision-unique">*</label>
-              <label>= Unique</label>
-            </div>
-            <div className="col-2">
-              <img src={enterOnce} className="vision-enterOnce" alt="Enter Once" />
-              <label>= Enter Once</label>
-            </div>
-            <div className="col-6 text-right">
-              {actionRefresh}
-            </div>
-          </div>
 
-          <div className="row">
-            <div className="col-12">
-              {state.form.sectionsIds.map((sectionId) => (
-                <Section
-                  key={sectionId}
-                  section={state.sections[sectionId]}
-                  fields={state.fields}
-                  setFieldValue={setFieldValue}
-                ></Section>
-              ))}
+            <div className="row">
+              <div className="col-12">
+                {state.form.sectionsIds.map((sectionId) => (
+                  <Section
+                    key={sectionId}
+                    section={state.sections[sectionId]}
+                    fields={state.fields}
+                    setFieldValue={setFieldValue}
+                  ></Section>
+                ))}
+              </div>
             </div>
-          </div>
-        </>
-      ) : null}
+          </>
+        ) : null}
 
-      <div className="row">
-        <div className="col-12 mt-1">
-        <button className="btn btn-secondary ml-2" onClick={sendDataToClarity}>Save</button>
-        <button className="btn btn-secondary ml-2" onClick={sendDataToClarity}>Save And Return</button>
-        <button className="btn btn-secondary ml-2" onClick={sendDataToClarity}>Return</button>
-        <button className="btn btn-secondary ml-2" 
-          onClick={()=>{
-            const data = queryCache.getQueryData<IInterfaceForm>(ApiEndPoints.GetForm);            
-            setInitialState(data);
-          }}>Refresh
-        </button>
+        <div className="row">
+          <div className="col-12 mt-1">
+          {saveButtons}
+          <button className="btn btn-secondary ml-2" onClick={onClickReturn}>Return</button>
+          <button className="btn btn-secondary ml-2" 
+            onClick={()=>{
+              const data = queryCache.getQueryData<IInterfaceForm>(ApiEndPoints.GetForm);            
+              setInitialState(data);
+            }}>Refresh
+          </button>
+          </div>
         </div>
-      </div>
+      </form>
     </div>
   );
 }

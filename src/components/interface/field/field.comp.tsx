@@ -31,6 +31,7 @@ const Field: React.FC<IFieldProps> = ({ field, setFieldValue }) => {
             { field.type === "Money"  && ( <FieldMoney key={field.id} field={field} setFieldValue={setFieldValue}/> ) }      
             { (field.type === "Lookup" || field.type === "MLookup") && ( <FieldLookup key={field.id} field={field} setFieldValue={setFieldValue}/> ) }      
             {field.hint && <label>({field.hint})</label>}
+            { field.required && field.value === '' && <label className="text-danger">Required value</label>}
           </div>
     </div>
 

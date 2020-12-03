@@ -9,6 +9,7 @@ import enterOnce from "../../../images/ICONGO.gif"
 import "./form.css";
 import { IField, IInterfaceForm } from "../../../shared/contracts/types";
 import InterfaceActions from "../events/interfaceActions.comp";
+import { useAlert } from 'react-alert'
 
 export const SET_INPUT_VALUE = "SET_INPUT_VALUE";
 export const SET_INITIAL_STATE = "SET_INITIAL_STATE";
@@ -68,13 +69,21 @@ const Form: React.FC = () => {
     parentCode ? parentCode : ''
   );
 
+  const [state, dispatch] = useReducer(interfaceReducer, data);
+
   const reloadForm = () => {
     console.log('reloadForm');
   }
 
-  const [state, dispatch] = useReducer(interfaceReducer, data);
+  //const alert = useAlert();
+
+  // const onClickSave = () => {
+  //   const result = useSendFormData(state);
+  //   alert('result' + result);
+  // };
 
   const onClickSave = useSendFormData(state);
+
   const onClickSaveAndReturn = useSendFormData(state);
 
   const queryCache = useQueryCache();
@@ -121,18 +130,28 @@ const Form: React.FC = () => {
     </div>;
   }
 
+
+  let saveDisabled = false;
+  for (var key in state?.fields) {
+      if(state?.fields[key].required && state?.fields[key].value === ''){
+        saveDisabled =  true;
+      }
+  }
+
   let saveButtons;
+
   if(formType === '0' || formType === '2'){
     saveButtons = 
     <>
-        <button className="btn btn-secondary ml-2" onClick={onClickSave}>Save</button>
-        <button className="btn btn-secondary ml-2" onClick={onClickSaveAndReturn}>Save And Return</button>
+        <button className="btn btn-secondary ml-2" onClick={onClickSave} disabled={saveDisabled}>Save</button>
+        <button className="btn btn-secondary ml-2" onClick={onClickSaveAndReturn} disabled={saveDisabled}>Save And Return</button>
     </>;
   }
 
 
   const afterSubmission = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    console.log("event", event);
   }
 
   const onClickReturn = () =>{    
@@ -141,7 +160,7 @@ const Form: React.FC = () => {
 
   return (
     <div className="container">
-      <form onSubmit = {afterSubmission}>
+      {/* <form onSubmit = {afterSubmission} className="form-inside-input"> */}
         {isLoading && <div>Loading</div>}
         {error && <div>{error.title}</div>}
         {state ? (
@@ -200,7 +219,7 @@ const Form: React.FC = () => {
           </button>
           </div>
         </div>
-      </form>
+      {/* </form> */}
     </div>
   );
 }

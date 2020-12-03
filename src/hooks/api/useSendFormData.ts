@@ -13,7 +13,10 @@ export default function useSendFormData(data: IInterfaceForm|undefined) {
         else{
             console.log("Send Data", JSON.stringify(data));
             const result = await api.post(`${ApiEndPoints.SaveForm}`, data);
-            console.log("Save Result", result);
+            console.log("Save Result", result);            
+            // window.alert('Success');
+            //window.location.reload();
+
         }
     }
 

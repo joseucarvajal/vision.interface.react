@@ -37,45 +37,24 @@ const Section: React.FC<ISectionProps> = ({ section, fields, setFieldValue }) =>
   }
 
   return (
-    <>
-      <div className="card">
-        <h5 className="card-header">&nbsp;{title}</h5>
-        <div className="card-body">
-          <div className="col-12">
-            <div className="row">
-              {fieldsByNumColumn.map((fieldArray, index) => (
-                  <SectionColumn 
-                    key={index}
-                    fieldsColumn={fieldArray}
-                    columnClass={columnClassName[numColumns-1]}
-                    setFieldValue={setFieldValue}
-                  />
-              ))}
-            </div>
+    <div className="card">
+      <h5 className="card-header">&nbsp;{title}</h5>
+      <div className="card-body">
+        <div className="col-12">
+          <div className="row">
+            {fieldsByNumColumn.map((fieldArray, index) => (
+                <SectionColumn 
+                  key={index}
+                  fieldsColumn={fieldArray}
+                  columnClass={columnClassName[numColumns-1]}
+                  setFieldValue={setFieldValue}
+                />
+            ))}
           </div>
         </div>
       </div>
-    </>
-  //   <>
-  //   <div className="col-12">
-  //     <div className="row vision-sectiontitle">
-  //       <label>&nbsp;{title}</label>
-  //     </div>
-  //     <div className="row">
-  //       {fieldsByNumColumn.map((fieldArray, index) => (
-  //           <SectionColumn 
-  //             key={index}
-  //             fieldsColumn={fieldArray}
-  //             columnClass={columnClassName[numColumns-1]}
-  //           />
-  //         ))}
-  //     </div>
-  //   </div>
-  //   <div className="col-12">
-  //     &nbsp;
-  //   </div>
-  // </>
-);
+    </div>
+  );
 };
 
 export default Section;

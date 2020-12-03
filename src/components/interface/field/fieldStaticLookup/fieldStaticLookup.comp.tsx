@@ -36,6 +36,7 @@ const FieldStaticLookup: React.FC<IFieldStaticLookupProps> = ({ field, dictionar
       onChange={onChange} 
       isDisabled={field.readOnly}      
       title={field.tooltip}      
+      isClearable
     />
   );
 };

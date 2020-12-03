@@ -49,7 +49,8 @@ const FieldDynamicLookup: React.FC<IFieldDynamicLookupProps> = ({ field, setFiel
     <AsyncSelect
       isMulti={field.type === "MLookup"}
       cacheOptions 
-      // defaultOptions
+      defaultOptions
+      isClearable
       onChange={onChange} 
       loadOptions={promiseOptions} 
       isDisabled={field.readOnly}      

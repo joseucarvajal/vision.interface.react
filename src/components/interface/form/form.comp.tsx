@@ -84,6 +84,12 @@ const Form: React.FC = () => {
 
   const onClickSave = useSendFormData(state);
 
+  const onClickSaveLocal = async ()=> {
+    const result = await onClickSave();
+
+    console.log('Result', result);
+  };
+  
   const onClickSaveAndReturn = useSendFormData(state);
 
   const queryCache = useQueryCache();
@@ -143,7 +149,7 @@ const Form: React.FC = () => {
   if(formType === '0' || formType === '2'){
     saveButtons = 
     <>
-        <button className="btn btn-secondary ml-2" onClick={onClickSave} disabled={saveDisabled}>Save</button>
+        <button className="btn btn-secondary ml-2" onClick={onClickSaveLocal} disabled={saveDisabled}>Save</button>
         <button className="btn btn-secondary ml-2" onClick={onClickSaveAndReturn} disabled={saveDisabled}>Save And Return</button>
     </>;
   }

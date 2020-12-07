@@ -18,7 +18,7 @@ const FieldNumeric: React.FC<IFieldNumericgProps> = ({ field, setFieldValue }) =
     <NumericInput className="form-control"
       value={value}
       onChange={onChange} 
-      disabled={field.readOnly}
+      disabled={field.readOnly || (field.value !== '' && field.enterOnce)}
       title={field.tooltip}
       required={field.required}
       precision={field.decimalPlaces}

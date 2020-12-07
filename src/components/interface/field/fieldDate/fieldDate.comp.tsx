@@ -62,7 +62,7 @@ const FieldDate: React.FC<IFieldDateProps> = ({ field, setFieldValue }) => {
       <DatePicker className="form-control"
         selected={getDateValue(value)} 
         onChange={onChange} 
-        disabled={field.readOnly}
+        disabled={field.readOnly || (field.value !== '' && field.enterOnce)}
         title={field.tooltip}
         todayButton="Today"
         strictParsing

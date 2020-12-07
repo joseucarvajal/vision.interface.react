@@ -22,6 +22,7 @@ export type LookupType = "LOOKUP_SOURCE_STATIC" | "LOOKUP_SOURCE_DYNAMIC";
 export interface IField {
     column: number;
     decimalPlaces: number;
+    enterOnce: boolean;
     id: string;
     height: number;
     hidden: boolean;

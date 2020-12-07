@@ -19,7 +19,7 @@ const FieldString: React.FC<IFieldStringProps> = ({ field, setFieldValue }) => {
       onChange={onChange} 
       size = {field.width}
       maxLength={field.maxLength} 
-      disabled={field.readOnly}
+      disabled={field.readOnly || (field.value !== '' && field.enterOnce)}
       title={field.tooltip}      
       required={field.required}
     />

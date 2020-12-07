@@ -34,7 +34,7 @@ const FieldStaticLookup: React.FC<IFieldStaticLookupProps> = ({ field, dictionar
       isMulti={field.type === "MLookup"}
       defaultValue={ field.lookupValues }
       onChange={onChange} 
-      isDisabled={field.readOnly}      
+      isDisabled={field.readOnly || (field.value !== '' && field.enterOnce)}      
       title={field.tooltip}      
       isClearable
     />

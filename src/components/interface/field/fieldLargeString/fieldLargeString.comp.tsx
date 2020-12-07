@@ -19,7 +19,7 @@ const FieldLargeString: React.FC<IFieldLargeStringProps> = ({ field, setFieldVal
       onChange={onChange}               
       cols = {field.width}
       maxLength={field.maxLength} 
-      disabled={field.readOnly}
+      disabled={field.readOnly || (field.value !== '' && field.enterOnce)}
       title={field.tooltip}
       rows={field.height}              
     />

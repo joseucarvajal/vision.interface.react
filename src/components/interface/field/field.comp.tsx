@@ -7,6 +7,8 @@ import FieldDate from "./fieldDate/fieldDate.comp"
 import FieldLookup from "./fieldLookup/fieldLookup.comp"
 import FieldNumeric from "./fieldNumeric/fieldNumeric.comp"
 import FieldMoney from "./fieldMoney/fieldMoney.comp"
+import enterOnce from "../../../images/ICONGO.gif"
+
 
 interface IFieldProps {
   field: IField;
@@ -20,6 +22,7 @@ const Field: React.FC<IFieldProps> = ({ field, setFieldValue }) => {
           <div className="col-4 vision-right">
             {field.required && <label className="vision-required">*&nbsp;</label>}            
             {field.isUnique && <label className="vision-unique">*&nbsp;</label>}            
+            {field.enterOnce && <img src={enterOnce} className="vision-enterOnce" alt="Enter Once" />} 
             <label>{field.name}</label>
           </div>
           <div className="col-8">
@@ -30,8 +33,8 @@ const Field: React.FC<IFieldProps> = ({ field, setFieldValue }) => {
             { field.type === "Numeric"  && ( <FieldNumeric key={field.id} field={field} setFieldValue={setFieldValue}/> ) }      
             { field.type === "Money"  && ( <FieldMoney key={field.id} field={field} setFieldValue={setFieldValue}/> ) }      
             { (field.type === "Lookup" || field.type === "MLookup") && ( <FieldLookup key={field.id} field={field} setFieldValue={setFieldValue}/> ) }      
-            {field.hint && <label>({field.hint})</label>}
-            { field.required && field.value === '' && <label className="text-danger">Required value</label>}
+            { field.hint && <label>({field.hint})</label> }
+            { field.required && field.value === '' && <label className="text-danger">Required value</label> }
           </div>
     </div>
 

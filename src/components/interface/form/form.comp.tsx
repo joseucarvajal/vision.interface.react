@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import useGetFormDefinition from "../../../hooks/api/useGetFormDefinition";
 import useSendFormData from "../../../hooks/api/useSendFormData";
 import Section from "../section/section.comp";
@@ -9,7 +9,7 @@ import enterOnce from "../../../images/ICONGO.gif"
 import "./form.css";
 import { IField, IInterfaceForm } from "../../../shared/contracts/types";
 import InterfaceActions from "../events/interfaceActions.comp";
-import { useAlert } from 'react-alert'
+import { Alert } from "react-bootstrap";
 
 export const SET_INPUT_VALUE = "SET_INPUT_VALUE";
 export const SET_INITIAL_STATE = "SET_INITIAL_STATE";
@@ -75,19 +75,23 @@ const Form: React.FC = () => {
     console.log('reloadForm');
   }
 
-  //const alert = useAlert();
-
-  // const onClickSave = () => {
-  //   const result = useSendFormData(state);
-  //   alert('result' + result);
-  // };
-
+  const [showAlert, setShowAlert] = useState(false);
+  const [isError, setIsError] = useState(false);
+  
   const onClickSave = useSendFormData(state);
 
   const onClickSaveLocal = async ()=> {
     const result = await onClickSave();
 
-    console.log('Result', result);
+    queryCache.refetchQueries(ApiEndPoints.GetForm);
+
+    setIsError(!result);
+    setShowAlert(true);
+
+    window.setTimeout(()=>{
+      setShowAlert(false)
+    },5000)
+
   };
   
   const onClickSaveAndReturn = useSendFormData(state);
@@ -166,6 +170,23 @@ const Form: React.FC = () => {
 
   return (
     <div className="container">
+    
+    { showAlert && isError &&
+      <Alert variant="danger">
+        <Alert.Heading></Alert.Heading>
+        <p>Error occurred please contact administrator</p>
+        <hr />
+      </Alert>
+    }
+    { showAlert && !isError &&
+      <Alert variant="success" show={showAlert}>
+        <Alert.Heading></Alert.Heading>
+        <p>Item saved successfully</p>
+        <hr />
+      </Alert>
+    }
+
+
       {/* <form onSubmit = {afterSubmission} className="form-inside-input"> */}
         {isLoading && <div>Loading</div>}
         {error && <div>{error.title}</div>}

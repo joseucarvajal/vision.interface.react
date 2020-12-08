@@ -7,7 +7,7 @@ import { ApiEndPoints } from "../../../api";
 import refresh from "../../../images/refresh.png"
 import enterOnce from "../../../images/ICONGO.gif"
 import "./form.css";
-import { IField, IInterfaceForm } from "../../../shared/contracts/types";
+import { IField, IInterfaceForm, IInterfaceRequestDTO } from "../../../shared/contracts/types";
 import InterfaceActions from "../events/interfaceActions.comp";
 import { Alert } from "react-bootstrap";
 
@@ -60,14 +60,19 @@ const Form: React.FC = () => {
   const formType = params.get('formType');
   const id = params.get('id');
   const parentCode = params.get('parentCode');
+  const currentUser = params.get('currentUser');
+  
+  const interfaceRequestDTO : IInterfaceRequestDTO = {
+    env: env ? env : "",
+    interfaceCode: interfaceCode ? interfaceCode : "",
+    formType: formType ? formType : '',
+    id: id ? id : '',
+    parentCode: parentCode ? parentCode : '',
+    currentUser: currentUser ? currentUser : ''
+  };
 
-  const { error, isLoading, data } = useGetFormDefinition(
-    env ? env : "",
-    interfaceCode ? interfaceCode : "",
-    formType ? formType : '',
-    id ? id : '',
-    parentCode ? parentCode : ''
-  );
+
+  const { error, isLoading, data } = useGetFormDefinition(interfaceRequestDTO);
 
   const [state, dispatch] = useReducer(interfaceReducer, data);
 

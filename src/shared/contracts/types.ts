@@ -91,3 +91,12 @@ export interface ILookupValue {
     fullLabel: string
 }
 
+export interface IInterfaceRequestDTO {
+    env: string,
+    interfaceCode: string,
+    formType: string,
+    id: string,
+    parentCode: string,
+    currentUser: string
+}
+

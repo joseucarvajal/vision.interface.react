@@ -2,7 +2,7 @@ export interface IForm {
     id: number;
     code: string;
     name: string;
-    sectionsIds: string[]
+    sectionsIds: string[];
 }
 
 export interface ISection {
@@ -13,7 +13,7 @@ export interface ISection {
 }
 
 export interface ISectionHash {
-    [id: string]: ISection
+    [id: string]: ISection;
 }
 
 export type FieldType = "String" | "Boolean" | "Date" | "Lookup" | "MLookup" | "Numeric" | "Money";
@@ -31,7 +31,7 @@ export interface IField {
     isUnique: boolean;
     lookupKey: string;
     lookupType: LookupType;
-    lookupValues: ILookupValue[]
+    lookupValues: ILookupValue[];
     maxLength: number;
     name: string;
     order: number;
@@ -46,11 +46,11 @@ export interface IField {
 }
 
 export interface IFieldHash {
-    [id: string]: IField
+    [id: string]: IField;
 }
 
 export interface IStaticLookupHash {
-    [id: string]: ILookupValue[]
+    [id: string]: ILookupValue[];
 }
 
 export interface IInterfaceForm {

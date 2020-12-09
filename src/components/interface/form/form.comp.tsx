@@ -90,7 +90,6 @@ const Form: React.FC = () => {
 
     if(formType === '2')
     {
-      console.log('******RELOAD');
       queryCache.refetchQueries(ApiEndPoints.GetForm);
     }
 

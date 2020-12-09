@@ -88,7 +88,11 @@ const Form: React.FC = () => {
   const onClickSaveLocal = async ()=> {
     const result = await onClickSave();
 
-    queryCache.refetchQueries(ApiEndPoints.GetForm);
+    if(formType === '2')
+    {
+      console.log('******RELOAD');
+      queryCache.refetchQueries(ApiEndPoints.GetForm);
+    }
 
     setIsError(!result);
     setShowAlert(true);
